@@ -1,0 +1,24 @@
+/**
+ * Controller Container
+ * Created by Anker on 2017/3/11.
+ */
+
+define(function (require) {
+  'use strict';
+
+  // Controller Container (js/controllers.js)
+  var controllers = angular.module('starter.controllers', []);
+  controllers.controller('DashCtrl', require('controllers/home/DashCtrl'));
+  controllers.controller('MeCtrl', require('controllers/me/MeCtrl'));
+  controllers.controller('AddDogCtrl', require('controllers/pet/AddDogCtrl'));
+  controllers.controller('DogDetailCtrl', require('controllers/pet/DogDetailCtrl'));
+  controllers.controller('DogIndexCtrl', require('controllers/pet/DogIndexCtrl'));
+  controllers.controller('AddConcernCtrl', require('controllers/post/AddConcernCtrl'));
+  controllers.controller('ChatsCtrl', require('controllers/post/ChatsCtrl'));
+  controllers.controller('ConcernCtrl', require('controllers/post/ConcernCtrl'));
+  controllers.controller('FindpwdCtrl', require('controllers/user/FindpwdCtrl'));
+  controllers.controller('LoginCtrl', require('controllers/user/LoginCtrl'));
+  controllers.controller('RegisterCtrl', require('controllers/user/RegisterCtrl'));
+  controllers.controller('ResetCtrl', require('controllers/user/ResetCtrl'));
+  return controllers;
+})

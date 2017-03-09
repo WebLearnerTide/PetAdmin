@@ -1,0 +1,33 @@
+<ion-view hide-nav-bar="false" title="论坛" >
+
+  <!--<ion-nav-buttons side="right">-->
+    <!--<a class="button button-clear" ng-href="#/tab/post/addconcern" nav-clear>-->
+      <!--<i class="icon ion-plus"></i>-->
+    <!--</a>-->
+  <!--</ion-nav-buttons>-->
+
+  <div>
+    <ion-tabs class="tabs-top tabs-color-active-positive">
+
+    <!-- 加载热门和关注 的 内容 -->
+      <ion-tab title="热门" href="#/tab/post/hot">
+        <ion-nav-view name="tab-post-hot">
+
+        </ion-nav-view>
+      </ion-tab>
+
+      <ion-tab title="关注" href="#/tab/post/concern">
+        <ion-nav-view name="tab-post-concern">
+
+        </ion-nav-view>
+      </ion-tab>
+
+    </ion-tabs>
+  </div>
+
+    <div style="height: 20px;"></div><!--留白-->
+</ion-view>
+
+
+
+

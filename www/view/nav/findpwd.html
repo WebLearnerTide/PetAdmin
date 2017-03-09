@@ -1,0 +1,25 @@
+<ion-view title="找回密码">
+  <ion-nav-buttons side="left">
+    <a class="button button-clear" ng-href="#/login" nav-clear>
+      <i class="icon ion-arrow-left-c"></i>
+    </a>
+  </ion-nav-buttons>
+
+  <ion-content>
+
+    <div class="padding"></div>
+
+    <label class="item item-input">
+      <input type="text" placeholder="手机号/邮箱">
+      <timerbutton timeout="60000" show-timer="false">获取验证码</timerbutton>
+    </label>
+    <label class="item item-input">
+      <input type="text" placeholder="输入验证码">
+
+    </label>
+    <div class="padding">
+      <button class="button button-block button-positive" ng-click="doNext()">下一步</button>
+    </div>
+  </ion-content>
+</ion-view>
+

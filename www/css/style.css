@@ -1,0 +1,14 @@
+/* Empty. Add your own CSS if you like */
+.col{
+  /*background-color: #F9FAFB;*/
+  padding: 5px;
+  /*border: 1px solid #ddd;*/
+  border-radius: 2px;
+  text-align: center;
+}
+.userid{
+  width:100%;
+  margin-right:0px;
+  padding-right:0;
+  border-radius: 50%
+}
