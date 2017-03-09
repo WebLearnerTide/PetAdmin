@@ -1,0 +1,20 @@
+<ion-view title="重置密码">
+  <ion-nav-buttons side="left">
+    <a class="button button-clear" ng-href="#/login" nav-clear>
+      <i class="icon ion-arrow-left-c"></i>
+    </a>
+  </ion-nav-buttons>
+  <ion-content>
+    <label class="item item-input">
+      <i class="icon ion-locked"></i>
+      <input type="password" placeholder="请设置密码" ng-model="m_pwd">
+    </label>
+    <label class="item item-input">
+      <i class="icon ion-locked"></i>
+      <input type="password" placeholder="请重新输入密码" ng-model="m_rpwd">
+    </label>
+    <div class="padding">
+      <button class="button button-block button-positive" ng-click="doBack()">完成</button>
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,32 @@
+<!--注册界面-->
+<ion-view title="新用户注册">
+  <ion-nav-buttons side="left">
+    <a class="button button-clear" ng-href="#/login" nav-clear><i class="icon ion-arrow-left-c"></i></a>
+  </ion-nav-buttons>
+  <ion-content>
+    <div class="content has-header">
+      <div class="list list-inset">
+        <label class="item item-input">
+          <i class="icon ion-person placeholder-icon"></i>
+          <input type="text" placeholder="用户名" ng-model="message.mName">
+        </label>
+        <label class="item item-input">
+          <i class="icon ion-lock-combination placeholder-icon"></i>
+          <input type="password" placeholder="密码" ng-model="message.mPwd">
+        </label>
+        <label class="item item-input">
+          <i class="icon ion-lock-combination placeholder-icon"></i>
+          <input type="password" placeholder="确认密码" ng-model="message.msPwd">
+        </label>
+        <label class="item item-input">
+          <i class="icon ion-email placeholder-icon"></i>
+          <input type="text" placeholder="email" ng-model="message.mEmail">
+        </label>
+      </div>
+      <div class="padding" style="padding-bottom: 0px">
+        <button class="button button-block button-positive" ng-click="registerNow()">立即注册</button>
+      </div>
+
+    </div>
+  </ion-content>
+</ion-view>

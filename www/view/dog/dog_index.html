@@ -1,0 +1,26 @@
+<ion-view hide-nav-bar="false" title="宠物" ng-init="getDogsTabs()" cache-view="false">
+  <ion-nav-buttons side="right">
+    <a class="button button-clear" ng-click="goToAdd()" nav-clear>
+      <i class="icon ion-plus"></i>
+    </a>
+  </ion-nav-buttons>
+  <!--切换不同的宠物 宠物1号 宠物2号等等--->
+  <div>
+    <ion-tabs class="tabs-top tabs-color-active-positive">
+      <!--<ion-tab title="pet1" href="#/tab/dog/detail/1">-->
+      <!--</ion-tab>-->
+
+      <!--<ion-tab title="pet2" href="#/tab/dog/detail/2">-->
+        <!--&lt;!&ndash;<ion-nav-view name="tab-dog-detail">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</ion-nav-view>&ndash;&gt;-->
+      <!--</ion-tab>-->
+      <ion-tab title="{{pet.petName}}" href="#/tab/dog/detail/{{pet.petId}}" ng-repeat="pet in pets"></ion-tab>
+    </ion-tabs>
+  </div>
+
+  <ion-nav-view name="tab-dog-detail" style="margin-top: 50px" nav-transition="none">
+
+  </ion-nav-view>
+
+</ion-view>

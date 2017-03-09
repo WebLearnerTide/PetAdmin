@@ -1,0 +1,21 @@
+{
+  "dogs":[
+    {"name":"大狗",
+    "type":"large"},
+    {"name":"中狗",
+    "type":"medium"},
+    {"name":"小狗",
+    "type":"small"}],
+  "dogs_type":[{"type":[{"id":0,"type":"金毛"},
+                         {"id":1,"type":"金毛1"},
+                         {"id":2,"type":"金毛2"},
+                         {"id":3,"type":"金毛3"}]},
+               {"type":[{"id":4,"type":"金毛4"},
+                         {"id":5,"type":"金毛5"},
+                         {"id":6,"type":"金毛6"},
+                         {"id":7,"type":"金毛7"}]},
+               {"type":[{"id":8,"type":"金毛8"},
+                        {"id":9,"type":"金毛9"},
+                        {"id":10,"type":"金毛10"},
+                        {"id":11,"type":"金毛11"}]}]
+}

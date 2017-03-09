@@ -1,0 +1,56 @@
+<!--主页面之4： 我
+    By:author
+-->
+
+<ion-view hide-nav-bar="false" title="我" cache-view="false" ng-init="updateInfo()">
+  <ion-content>
+
+    <div style="height: 20px;"></div><!--留白-->
+
+    <!--我-->
+    <div style="background-color: #d9edf7;height: 20%;padding-top: 10px;padding-bottom: 5px" class="row">
+      <!--用户头像-->
+      <div class="col col-20" style="padding-left: 5px">
+        <img ng-src="{{chat.face}}" class="userid">
+      </div>
+      <!--显示用户基本信息-->
+      <div class="col col-60" style="padding-left: 10px;padding-top: 10px">
+        <ul style="text-align: left">
+          <li>用户名:&nbsp;{{me.mName}}</li>
+          <li>邮箱:&nbsp;{{me.mEmail}}</li>
+          <li>积分:&nbsp;{{me.mScore}}</li>
+        </ul>
+      </div>
+      <!--签到按钮-->
+      <div class="col col-20" style="padding-top: 15px;padding-left: 0;padding-right:0">
+        <button class="button button-positive">签到</button>
+      </div>
+    </div>
+
+    <div style="height: 20px;"></div><!--留白-->
+
+    <div class="content ionic-pseudo">
+      <div class="list">
+        <a class="item item-icon-left" ng-href="#/collect">
+          <i class="icon ion-heart assertive"></i>
+          我的收藏
+        </a>
+
+        <a class="item item-icon-left" href="#">
+          <i class="icon ion-document-text positive"></i>
+          我的帖子
+        </a>
+
+        <a class="item item-icon-left" href="#">
+          <i class="icon ion-ios-email positive"></i>
+          回复提醒
+        </a>
+        <div style="height: 20px;"></div>  <!--留白-->
+        <a class="item item-icon-left" href="#">
+          <i class="icon ion-gear-b positive"></i>
+          设置
+        </a>
+      </div>
+    </div>
+  </ion-content>
+  </ion-view>
