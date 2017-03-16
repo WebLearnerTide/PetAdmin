@@ -13,5 +13,6 @@ define(function(require){
   services.factory('Chats', require('services/post/ChatsService'))
   services.factory('LoginService', require('services/user/LoginService'))
   services.factory('RegisterService', require('services/user/RegisterService'))
+  services.factory('FindpwdService', require('services/user/FindpwdService'))
   return services;
 })
