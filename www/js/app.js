@@ -499,8 +499,7 @@ define(['services/services', 'controllers/controllers', 'directives/directives']
         url: '/post',
         views: {
           'tab-post': {
-            templateUrl: 'view/post/post_index.html',
-            controller: 'ChatsCtrl'
+            templateUrl: 'view/post/post_index.html'
           }
         }
       })
@@ -552,7 +551,8 @@ define(['services/services', 'controllers/controllers', 'directives/directives']
         url:'/hot',
         views:{
           'tab-post-hot':{
-            templateUrl: 'view/post/post_hot.html'
+            templateUrl: 'view/post/post_hot.html',
+            controller:'PostHotCtrl'
           }
         }
       })

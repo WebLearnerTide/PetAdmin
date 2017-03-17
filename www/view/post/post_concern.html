@@ -1,15 +1,32 @@
 <!--关注-->
 
-<ion-view title="论坛">
- <ion-content>
-   babababbabab
- </ion-content>
-  <ion-nav-buttons side="right">
-    <a class="button button-clear"
-      nav-clear ng-click="ToaddConcern()">
-      <i class="icon ion-plus"></i>
-    </a>
-  </ion-nav-buttons>
-
-
+<ion-view title="论坛" ng-init="loadFollow()" cache-view="false">
+<ion-content>
+  <ion-list>
+    <ion-item class="item-divider" ng-show="showPetType">
+      品种
+    </ion-item>
+    <ion-item ng-repeat="pet in petType" ng-click="barDetail(pet)">
+      {{pet.barName}}
+    </ion-item>
+    <ion-item class="item-divider" ng-show="showLifeHealth">
+      生活健康
+    </ion-item>
+    <ion-item ng-repeat="life in lifeHealth" ng-click="barDetail(life)" ng-show="showLifeHealth">
+      {{life.barName}}
+    </ion-item>
+    <ion-item class="item-divider" ng-show="showOtherFollow">
+      其他
+    </ion-item>
+    <ion-item ng-repeat="other in otherFollow" ng-click="barDetail(other)" ng-show="showOtherFollow">
+      {{other.barName}}
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-nav-buttons side="right">
+  <a class="button button-clear"
+    nav-clear ng-click="ToaddConcern()">
+    <i class="icon ion-plus"></i>
+  </a>
+</ion-nav-buttons>
 </ion-view>

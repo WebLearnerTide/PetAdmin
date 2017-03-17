@@ -14,7 +14,7 @@ define(function (require) {
   controllers.controller('DogDetailCtrl', require('controllers/pet/DogDetailCtrl'));
   controllers.controller('DogIndexCtrl', require('controllers/pet/DogIndexCtrl'));
   controllers.controller('AddConcernCtrl', require('controllers/post/AddConcernCtrl'));
-  controllers.controller('ChatsCtrl', require('controllers/post/ChatsCtrl'));
+  controllers.controller('PostHotCtrl', require('controllers/post/PostHotCtrl'));
   controllers.controller('ConcernCtrl', require('controllers/post/ConcernCtrl'));
   controllers.controller('FindpwdCtrl', require('controllers/user/FindpwdCtrl'));
   controllers.controller('LoginCtrl', require('controllers/user/LoginCtrl'));
