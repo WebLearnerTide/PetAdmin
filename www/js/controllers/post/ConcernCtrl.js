@@ -59,7 +59,8 @@ define([], function () {
     }
 
     $scope.barDetail = function (follow) {
-
+      BarService.setCurrentBar(follow);
+      $state.go('barDetail')
     }
   }
   ctrl.$inject = ['$scope','$state', 'BarService', '$ionicLoading'];

@@ -28,19 +28,22 @@
       </ion-toggle>
 
       <!--选择生日-->
-      <li class="item">
+      <li class="item" ng-click="selectBirth()">
         <i class="icon ion-calendar"> 生日</i>
-        <time-picker title="选择生日" yearstart="1900" yearend="9999"
-                     time-picker-result="dog.pBirth" hidetime="true" format="yyyy-MM-dd">
-        </time-picker>
+        <!--<time-picker title="选择生日" yearstart="1900" yearend="9999"-->
+                     <!--time-picker-result="dog.pBirth" hidetime="true" format="yyyy-MM-dd">-->
+        <!--</time-picker>-->
+        <span style="float: right;">{{dog.pBirthText}}</span>
       </li>
 
       <!--选择领养日期--->
-      <li class="item">
+      <li class="item" ng-click="selectAddDate()">
         <i class="icon ion-calendar"> 领养日期</i>
-        <time-picker title="领养日期" yearstart="1900" yearend="9999"
-                     time-picker-result="dog.pAdoptdate" hidetime="true" format="yyyy-MM-dd">
-        </time-picker>
+        <!--<time-picker title="领养日期" yearstart="1900" yearend="9999"-->
+                     <!--time-picker-result="dog.pAdoptdate" hidetime="true" format="yyyy-MM-dd">-->
+        <!--</time-picker>-->
+        <span style="float: right;">{{dog.pAdoptdateText}}</span>
+
       </li>
 
       <!--选择品种-->

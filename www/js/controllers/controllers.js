@@ -9,6 +9,7 @@ define(function (require) {
   // Controller Container (js/controllers.js)
   var controllers = angular.module('starter.controllers', []);
   controllers.controller('DashCtrl', require('controllers/home/DashCtrl'));
+  controllers.controller('IndexCtrl', require('controllers/home/IndexCtrl'));
   controllers.controller('MeCtrl', require('controllers/me/MeCtrl'));
   controllers.controller('AddDogCtrl', require('controllers/pet/AddDogCtrl'));
   controllers.controller('DogDetailCtrl', require('controllers/pet/DogDetailCtrl'));
@@ -16,6 +17,8 @@ define(function (require) {
   controllers.controller('AddConcernCtrl', require('controllers/post/AddConcernCtrl'));
   controllers.controller('PostHotCtrl', require('controllers/post/PostHotCtrl'));
   controllers.controller('ConcernCtrl', require('controllers/post/ConcernCtrl'));
+  controllers.controller('BarDetailCtrl', require('controllers/post/BarDetailCtrl'));
+  controllers.controller('MyPostCtrl', require('controllers/post/MyPostCtrl'));
   controllers.controller('FindpwdCtrl', require('controllers/user/FindpwdCtrl'));
   controllers.controller('LoginCtrl', require('controllers/user/LoginCtrl'));
   controllers.controller('RegisterCtrl', require('controllers/user/RegisterCtrl'));

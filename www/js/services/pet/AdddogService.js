@@ -31,8 +31,8 @@ define([], function () {
             data: {
               petName: dog.pNickname,
               petGender: dog.pGender,
-              petBirthStr: dog.pBirth,
-              petDateStr: dog.pAdoptdate,
+              petBirthStr: ServiceUtil.dateFormat(dog.pBirth, 'yyyy-MM-dd'),
+              petDateStr: ServiceUtil.dateFormat(dog.pAdoptdate, 'yyyy-MM-dd'),
               mId: loginUser.mId,
               petcId: dog.petcId
               // pPetclass: dog.pPetclass

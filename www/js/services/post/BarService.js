@@ -3,7 +3,7 @@
  */
 define([], function () {
   'use strict';
-  var factory = function ($http, $q, ServiceUtil) {
+  var factory = function ($http, $q, ServiceUtil, $cacheFactory) {
     var baseUrl = ServiceUtil.getBaseUrl();
     var verifier = ServiceUtil.getVerifier();
     var ls = ServiceUtil.getLocalStorage();
@@ -100,9 +100,24 @@ define([], function () {
           })
         }
         defer.promise.then(success, error);
+      },
+      setCurrentBar:function (bar) {
+        var bar_cache = $cacheFactory.get('bar_cache');
+        if (null==bar_cache ||undefined==bar_cache) {
+          bar_cache = $cacheFactory('bar_cache');
+        }
+        bar_cache.put('curBar', bar);
+      },
+      getCurrentBar:function () {
+        var bar_cache = $cacheFactory.get('bar_cache');
+        return bar_cache.get('curBar');
+      },
+      exitCurrentBar:function () {
+        var bar_cache = $cacheFactory.get('bar_cache');
+        bar_cache.destroy();
       }
     }
   }
-  factory.$inject = ['$http', '$q', 'ServiceUtil'];
+  factory.$inject = ['$http', '$q', 'ServiceUtil', '$cacheFactory'];
   return factory;
 })

@@ -4,9 +4,9 @@
  */
 define([], function () {
   'use strict';
-  var ctrl = function ($scope, $state, $ionicLoading, BarService, $ionicHistory) {
+  var ctrl = function ($scope, $state, $ionicLoading, BarService, $ionicHistory, ServiceUtil) {
     $scope.goBackPost = function () {
-      $ionicHistory.goBackPost();
+      $ionicHistory.goBack()
     }
 
     $scope.petType = [];
@@ -47,10 +47,7 @@ define([], function () {
           }
         }
       }, function (err) {
-        $ionicLoading.show({
-          template:err.msg,
-          duration:err.duration
-        })
+        ServiceUtil.showLongBottom(err.msg)
         if (err.goLogin) {
           $state.go('login')
         }
@@ -62,22 +59,16 @@ define([], function () {
         barId:barId
       }
       BarService.addFollow(follow, function (data) {
-        $ionicLoading.show({
-          template:data.msg,
-          duration:1000
-        })
+        ServiceUtil.showShortBottom(data.msg)
         $scope.loadUnFollow();
       }, function (err) {
-        $ionicLoading.show({
-          template:err.msg,
-          duration:err.duration
-        })
+        ServiceUtil.showLongBottom(err.msg)
         if (err.goLogin) {
           $state.go('login')
         }
       })
     }
   }
-  ctrl.$inject = ['$scope', '$state', '$ionicLoading', 'BarService', '$ionicHistory'];
+  ctrl.$inject = ['$scope', '$state', '$ionicLoading', 'BarService', '$ionicHistory','ServiceUtil'];
   return ctrl;
 })

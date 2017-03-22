@@ -15,11 +15,11 @@
 
         <!--&lt;!&ndash;</ion-nav-view>&ndash;&gt;-->
       <!--</ion-tab>-->
-      <ion-tab title="{{pet.petName}}" href="#/tab/dog/detail/{{pet.petId}}" ng-repeat="pet in pets"></ion-tab>
+      <ion-tab title="{{pet.petName}}" href="#/tab/dog/detail/{{pet.petId}}" ng-repeat="pet in pets" nav-transition="none" nav-view-transition="none"></ion-tab>
     </ion-tabs>
   </div>
 
-  <ion-nav-view name="tab-dog-detail" style="margin-top: 50px" nav-transition="none">
+  <ion-nav-view name="tab-dog-detail" style="margin-top: 50px" nav-view-transition="none" nav-transition="none">
 
   </ion-nav-view>
 

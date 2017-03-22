@@ -1,0 +1,74 @@
+<ion-view title="{{bar.barName}}">
+  <ion-nav-buttons side="left">
+    <a class="button button-clear"
+       nav-clear ng-click="goBack()">
+      <i class="icon ion-arrow-left-c"></i>
+    </a>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <a class="button button-clear"
+       nav-clear ng-click="openNewPost()">
+      <i class="icon ion-document"></i>
+    </a>
+  </ion-nav-buttons>
+  <ion-content class="padding-bottom padding-top">
+    <div class="content stable-bg">
+
+      <div class="list" style="margin-bottom: 10px">
+
+        <div class="item item-avatar item-button-right">
+          <img src="http://www.runoob.com/try/demo_source/nin_logo.jpeg">
+          <h2>{{bar.barName}}</h2>
+          <p style="display: flex; align-items: center; position: relative;" class="padding-top padding-right">帖子数 22145</p>
+          <button class="button button-small button-positive" style="position:absolute;top: 25%;">已关注</button>
+
+        </div>
+
+      </div>
+      <ion-list style="margin-bottom: 10px">
+        <ion-item>
+          [置顶] 吧规
+        </ion-item>
+        <ion-item>
+          [置顶] 吧规
+        </ion-item>
+        <ion-item>
+          [置顶] 吧规
+        </ion-item>
+        <!--<ion-item class="item-divider"></ion-item>-->
+      </ion-list>
+      <div class="card list" style="margin-top: 10px">
+        <div class="item item-avatar">
+          <img src="http://www.runoob.com/try/demo_source/nin_logo.jpeg">
+          <h2>Master1</h2>
+          <p>2017-03-20</p>
+        </div>
+
+        <div class="item item-body">
+          <img class="full-image" style="height:20%; width:100%" src="http://www.runoob.com/try/demo_source/nin_logo.jpeg">
+          <p>
+            我要狗狗！<br>
+            我要狗狗！<br>
+            我要狗狗！<br>
+          </p>
+          <p>
+            <a href="#" class="subdued">1 收藏</a>
+            <a href="#" class="subdued">5 评论</a>
+          </p>
+        </div>
+
+        <div class="item tabs tabs-secondary tabs-icon-left">
+          <a class="tab-item" href="#">
+            <i class="icon ion-thumbsup"></i>
+            收藏
+          </a>
+          <a class="tab-item" href="#">
+            <i class="icon ion-chatbox"></i>
+            评论
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </ion-content>
+</ion-view>

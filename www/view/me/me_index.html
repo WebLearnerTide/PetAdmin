@@ -2,30 +2,23 @@
     By:author
 -->
 
-<ion-view hide-nav-bar="false" title="我" cache-view="false" ng-init="updateInfo()">
+<ion-view hide-nav-bar="false" title="我" cache-view="false">
   <ion-content>
 
     <div style="height: 20px;"></div><!--留白-->
 
     <!--me-->
-    <ion-list>
-      <ion-item class="row" ng-style="{'padding':'6px','background-color':'#d9edf7'}">
-          <!--用户头像-->
-          <img ng-src="{{chat.face}}" class="userid col col-20">
-          <!--显示用户基本信息-->
-          <div class="col col-55" style="display: flex; align-items: center;margin-left: 10px">
-            <ul style="text-align: left">
-              <li>用户名:&nbsp;{{me.mName}}</li>
-              <li>邮箱:&nbsp;{{me.mEmail}}</li>
-              <li>积分:&nbsp;{{me.mScore}}</li>
-            </ul>
-          </div>
-          <!--签到按钮-->
-          <div class="col col-25" style="display: flex; align-items: center">
-            <button class="button button-positive" ng-click="doSign()" ng-style="btn.ctrl">{{btn.name}}</button>
-          </div>
-      </ion-item>
-    </ion-list>
+    <div class="list" ng-style="{'padding':'6px','background-color':'#d9edf7'}">
+      <a class="item item-avatar item-button-right" ng-style="{'background-color':'#d9edf7','border':'none'}">
+        <img ng-src="{{chat.face}}">
+        <!--显示用户基本信息-->
+        <h2>用户名:&nbsp;{{me.mName}}</h2>
+        <!--<p>邮箱:&nbsp;{{me.mEmail}}</p>-->
+        <p>积分:&nbsp;{{me.mScore}}</p>
+        <!--签到按钮-->
+        <button class="button button-positive" ng-click="doSign()" ng-style="btn.ctrl">{{btn.name}}</button>
+      </a>
+    </div>
 
     <!--我-->
     <!--<div style="background-color: #d9edf7;height: 20%;padding-top: 10px;padding-bottom: 5px" class="row">-->
@@ -47,7 +40,7 @@
       <!--</div>-->
     <!--</div>-->
 
-    <div style="height: 20px;"></div><!--留白-->
+    <!--<div style="height: 20px;"></div>&lt;!&ndash;留白&ndash;&gt;-->
 
     <div class="content ionic-pseudo">
       <div class="list">
@@ -56,7 +49,7 @@
           我的收藏
         </a>
 
-        <a class="item item-icon-left" href="#">
+        <a class="item item-icon-left" href="#/myPost">
           <i class="icon ion-document-text positive"></i>
           我的帖子
         </a>

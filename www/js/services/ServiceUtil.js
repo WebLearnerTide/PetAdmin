@@ -3,7 +3,7 @@
  */
 define([], function () {
   'use strict';
-  var factory = function ($window) {
+  var factory = function ($window, $cordovaToast, $cordovaDatePicker, $cordovaImagePicker, $ionicLoading) {
     var server = {
       protocol:'http',
       host:'localhost',
@@ -56,6 +56,9 @@ define([], function () {
       //读取对象
       getObject: function (key) {
         return JSON.parse($window.localStorage[key] || '{}');
+      },
+      remove:function (key) {
+        $window.localStorage.removeItem(key)
       }
     }
 
@@ -86,9 +89,88 @@ define([], function () {
         for (var k in o)
           if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
         return fmt;
+      },
+      getDatePicker: function (success, error, options) {
+        var defaultOptions = {
+          date: new Date(),
+          mode: 'date', // or 'time'
+          minDate: new Date(1900,0,1),
+          allowOldDates: true,
+          allowFutureDates: false,
+          doneButtonLabel: '确定',
+          doneButtonColor: '#F2F3F4',
+          cancelButtonLabel: '取消',
+          cancelButtonColor: '#000000'
+        }
+
+        var err = {
+          msg:'攻城狮正在努力开发中',
+          duration:'1000'
+        }
+
+        options = arguments[2] ? arguments[2]: defaultOptions;
+        if (typeof cordova === 'undefined') {
+          error(err)
+        } else {
+          document.addEventListener("deviceready", function () {
+            $cordovaDatePicker.show(options).then(function (date) {
+              // $cordovaToast.showLongBottom(date)
+              success(date)
+            })
+          },false);
+        }
+      },
+      showImagePicker:function (success, error, options) {
+        var defaultOptions = {
+          maximumImagesCount: 10,
+          width: 800,
+          height: 800,
+          quality: 80
+        };
+        var err = {
+          msg:'攻城狮正在努力开发中',
+          duration:'1000'
+        }
+        options = arguments[2] ? arguments[2]: defaultOptions;
+        if (typeof cordova === 'undefined') {
+          error(err)
+        } else {
+          document.addEventListener("deviceready", function () {
+            $cordovaImagePicker.getPictures(options).then(function (results) {
+              // $cordovaToast.showLongBottom(date)
+              success(results)
+            }, function (e) {
+              $cordovaToast.showLongBottom(JSON.stringify(e))
+            })
+          },false);
+        }
+      },
+      showLongBottom:function (text) {
+        if (typeof cordova === 'undefined') {
+          $ionicLoading.show({
+            template:text,
+            duration:2000
+          })
+        } else {
+          document.addEventListener("deviceready", function () {
+            $cordovaToast.showLongBottom(text)
+          },false);
+        }
+      },
+      showShortBottom:function (text) {
+        if (typeof cordova === 'undefined') {
+          $ionicLoading.show({
+            template:text,
+            duration:1000
+          })
+        } else {
+          document.addEventListener("deviceready", function () {
+            $cordovaToast.showShortBottom(text)
+          },false);
+        }
       }
     }
   }
-  factory.$inject = ['$window'];
+  factory.$inject = ['$window', '$cordovaToast', '$cordovaDatePicker', '$cordovaImagePicker', '$ionicLoading'];
   return factory;
 })

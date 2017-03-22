@@ -24,7 +24,7 @@ define([], function () {
           $scope.selectedAddress = {province:'请选择'};
 
 
-          $http.get('http://localhost:8080/petServer/petClass/getBuild').success(function (res) {//调取接口获取数据
+          $http.get('http://ctide.cn/petServer/petClass/getBuild').success(function (res) {//调取接口获取数据
             addressData = res;
             console.log('build', res)
             if (addressData.success) {
@@ -78,7 +78,7 @@ define([], function () {
 
           selectedAddress = {};
           $scope.showBackBtn = true;
-          $http.get('http://localhost:8080/petServer/petClass/getByBuild?petcBuild='+selectedProvinceIndex).success(function (resp) {
+          $http.get('http://ctide.cn/petServer/petClass/getByBuild?petcBuild='+selectedProvinceIndex).success(function (resp) {
             console.log('build', resp)
             if (resp.success) {
               $scope.classData = resp.classList;
