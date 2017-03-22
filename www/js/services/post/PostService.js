@@ -17,8 +17,7 @@ define([], function () {
       list:[]
     }
     return {
-      getHotPost:function (page, success, error) {
-        var defer = $q.defer();
+      getHotPost:function (page, success) {
         $http({
           method:'GET',
           params:page,
@@ -26,16 +25,26 @@ define([], function () {
         }).then(function (resp) {
           var data = resp.data;
           if (data.success) {
-            defer.resolve(data)
+            if (data.empty) {
+              data.tryMore = false;
+            } else {
+              if (data.page<data.total) {
+                data.tryMore = true;
+                data.page+=1;
+              } else {
+                data.tryMore = false;
+              }
+            }
+            success(data)
           } else {
             err.msg = data.msg
-            defer.reject(err);
+            ServiceUtil.showLongBottom(data.msg)
           }
         }, function (e) {
           err.msg = e.message
-          defer.reject(err)
+          ServiceUtil.showLongBottom(e.message)
         })
-        defer.promise.then(success, error)
+        // defer.promise.then(success, error)
       },
       getPostClasses:function (success) {
         $http.get(baseUrl + '/postClass/getAllClass').then(function (resp) {

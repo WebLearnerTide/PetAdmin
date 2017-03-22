@@ -41,3 +41,6 @@
 
 .icon-weixin:before { content: "\e634"; }
 
+.card {
+  border: 0px;
+}

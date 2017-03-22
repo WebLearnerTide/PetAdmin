@@ -5,20 +5,21 @@
       <i class="icon ion-arrow-left-c"></i>
     </a>
   </ion-nav-buttons>
-  <ion-content class="padding stable-bg">
+  <ion-content class="stable-bg">
     <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
     <ion-list>
-      <div ng-repeat="item in posts" class="card">
+      <div class="item stable-bg" style="border: none;padding: 5px"
+                collection-repeat="item in posts"
+                ng-click="detail(item)">
         <ion-item class="item-body">
-          <i class="energized">[{{item.pcName}}]</i> {{item.pTitle}}
+        <i class="energized">[{{item.pcName}}]</i> {{item.pTitle}}
         </ion-item>
         <ion-item class="item-divider light-bg">
-          <span style="font-size: 12px">{{item.barName}} <i style="float: right;" class="dark">{{item.pTime}}</i></span>
+        <span style="font-size: 12px">{{item.barName}} <i style="float: right;" class="dark">{{item.pTime}}</i></span>
         </ion-item>
       </div>
     </ion-list>
-    <ion-infinite-scroll icon="ion-loading-c" ng-if="param.tryMore" on-infinite="loadMore()" distance="1%">
+    <ion-infinite-scroll on-infinite="loadMore()" ng-if="param.tryMore" immediate-check="false"  icon="ion-load-c" distance="10%" ></ion-infinite-scroll>
 
-    </ion-infinite-scroll>
   </ion-content>
 </ion-view>
