@@ -43,8 +43,9 @@ define([], function () {
             var myPostList = data.myPostList;
             $scope.param.tryMore = data.tryMore
             for (var i in myPostList) {
-              $scope.posts.push(myPostList[i]);
+              $scope.posts.push(myPostList[i])
             }
+
             if ($scope.param.tryMore) {
               $scope.param.page = $scope.param.page + 1;
             } else {
@@ -65,7 +66,7 @@ define([], function () {
     }
 
     $scope.detail = function (post) {
-      console.log('postDetail', post)
+      $state.go('postDetail', {pId:post.pId})
     }
   }
   ctrl.$inject = ['$scope', '$state', '$timeout', 'PostService', 'ServiceUtil', '$ionicLoading']

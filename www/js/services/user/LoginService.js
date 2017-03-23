@@ -137,6 +137,10 @@ define([], function () {
           })
         },false);
 
+      },
+      clearLoginInfo: function () {
+        ls.remove('LoginUser');
+        ls.remove('isLogin', true);
       }
     }
   }

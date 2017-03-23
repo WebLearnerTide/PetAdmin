@@ -219,6 +219,11 @@ define(['services/services', 'controllers/controllers', 'directives/directives']
         templateUrl:'view/post/my_post.html',
         controller:'MyPostCtrl'
       })
+      .state('postDetail', {
+        url:'/postDetail/:pId',
+        templateUrl:'view/post/post_detail.html',
+        controller:'PostDetailCtrl'
+      })
     // 默认进入欢迎页
     $urlRouterProvider.otherwise('/index');
 

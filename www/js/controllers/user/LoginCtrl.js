@@ -10,6 +10,9 @@ define([], function () {
         $ionicHistory.clearCache();
       },1000);
     })
+
+    // LoginService.clearLoginInfo()
+
     $scope.master = {
       mName:'',
       mPwd:''

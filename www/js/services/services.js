@@ -16,5 +16,6 @@ define(function(require){
   services.factory('FindpwdService', require('services/user/FindpwdService'))
   services.factory('BarService', require('services/post/BarService'))
   services.factory('PostService', require('services/post/PostService'))
+  services.factory('ReplyService', require('services/post/ReplyService'))
   return services;
 })

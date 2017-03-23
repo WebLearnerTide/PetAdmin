@@ -3,7 +3,7 @@
  */
 define([], function () {
   'use strict';
-  var ctrl = function ($scope, $ionicLoading, PostService, $timeout,ServiceUtil) {
+  var ctrl = function ($scope, $ionicLoading, PostService, $timeout,ServiceUtil, $state) {
     $scope.$on('$ionicView.beforeEnter', function () {
       $scope.hots = []
       $scope.param = {
@@ -43,8 +43,10 @@ define([], function () {
             $ionicLoading.hide();
             var myPostList = data.hotPostList;
             $scope.param.tryMore = data.tryMore
-
-            $scope.hots.concat(myPostList);
+            for (var i in myPostList) {
+              $scope.hots.push(myPostList[i])
+            }
+            // $scope.hots.concat(myPostList);
 
             if ($scope.param.tryMore) {
               $scope.param.page = $scope.param.page + 1;
@@ -57,7 +59,11 @@ define([], function () {
       }, 1500);
     };
 
+    $scope.detail = function (post) {
+      $state.go('postDetail', {pId:post.pId})
+    }
+
   }
-  ctrl.$inject = ['$scope', '$ionicLoading', 'PostService', '$timeout','ServiceUtil'];
+  ctrl.$inject = ['$scope', '$ionicLoading', 'PostService', '$timeout','ServiceUtil', '$state'];
   return ctrl;
 })

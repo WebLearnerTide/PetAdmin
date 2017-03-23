@@ -6,9 +6,9 @@ define([], function () {
   var factory = function ($window, $cordovaToast, $cordovaDatePicker, $cordovaImagePicker, $ionicLoading) {
     var server = {
       protocol:'http',
-      host:'ctide.cn',
+      host:'localhost',
       content:'petServer',
-      port:80
+      port:8090
     }
 
     var verifier = {

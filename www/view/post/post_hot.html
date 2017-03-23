@@ -1,13 +1,12 @@
 <!--热门-->
 
 <ion-view title="论坛">
-  <ion-content class="stable-bg">
+  <ion-content class="stable-bg" style="margin-bottom: 40px">
     <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
     <ion-list>
-      <div class="item stable-bg"
+      <div class="item stable-bg" style="border: none;padding: 5px"
                 collection-repeat="item in hots"
-                ng-click="console.log(item.pcName)"
-           style="border: none;padding: 5px">
+                ng-click="detail(item)">
         <ion-item class="item-body">
           <i class="energized">[{{item.pcName}}]</i> {{item.pTitle}}
         </ion-item>

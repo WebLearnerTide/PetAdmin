@@ -16,7 +16,7 @@
         <!--<p>邮箱:&nbsp;{{me.mEmail}}</p>-->
         <p>积分:&nbsp;{{me.mScore}}</p>
         <!--签到按钮-->
-        <button class="button button-positive" ng-click="doSign()" ng-style="btn.ctrl">{{btn.name}}</button>
+        <button class="button button-positive" ng-click="doSign()" ng-style="{'position':'absolute','top':'25%'}"  ng-disabled="btn.ctrl"><i style="font-size: 12px">{{btn.name}}</i></button>
       </a>
     </div>
 

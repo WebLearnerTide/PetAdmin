@@ -7,7 +7,7 @@ define([], function () {
     $scope.$on('$ionicView.beforeEnter', function() {
       $scope.btn = {
         name:'签到',
-        ctrl:{'position':'absolute','top':'25%'}
+        ctrl:false
       }
       var ls = ServiceUtil.getLocalStorage();
       var verifier = ServiceUtil.getVerifier();
@@ -27,14 +27,12 @@ define([], function () {
         if ($scope.me.mDate < today) {
           $scope.btn = {
             name:'签到',
-            ctrl:{}
+            ctrl:false
           }
         } else {
           $scope.btn = {
             name:'已签到',
-            ctrl:{'border-color': '#387ef5',
-              'background': 'transparent',
-              'color': '#387ef5','position':'absolute','top':'25%'}
+            ctrl:true
           }
         }
       }, function (err) {
@@ -45,14 +43,6 @@ define([], function () {
       })
     })
 
-
-
-    $scope.btn = {
-      name:'',
-      ctrl:{'border-color': '#387ef5',
-        'background': 'transparent',
-        'color': '#387ef5'}
-    }
 
     $scope.doSign = function () {
       var ls = ServiceUtil.getLocalStorage();
@@ -65,30 +55,13 @@ define([], function () {
           ls.setObject('LoginUser', data.master)
           $scope.btn = {
             name:'已签到',
-            ctrl:{'border-color': '#387ef5',
-              'background': 'transparent',
-              'color': '#387ef5','position':'absolute','top':'25%'}
+            ctrl:true
           }
-          // $ionicLoading.show({
-          //   template:'积分 +' + (data.master.mScore - score),
-          //   duration:1000
-          // })
           ServiceUtil.showShortBottom('积分 +' + (data.master.mScore - score))
         }, function (err) {
-          // $ionicLoading.show({
-          //   template: err.msg,
-          //   duration: 1000
-          // })
           ServiceUtil.showShortBottom(err.msg)
         });
       } else {
-        // document.addEventListener("deviceready", function () {
-        //   $cordovaToast.showShortTop('已签到').then(function(success) {
-        //     // success
-        //   }, function (error) {
-        //     // error
-        //   });
-        // }, false);
         ServiceUtil.showShortBottom('已签到')
       }
     }

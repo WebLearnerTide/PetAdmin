@@ -19,6 +19,7 @@ define(function (require) {
   controllers.controller('ConcernCtrl', require('controllers/post/ConcernCtrl'));
   controllers.controller('BarDetailCtrl', require('controllers/post/BarDetailCtrl'));
   controllers.controller('MyPostCtrl', require('controllers/post/MyPostCtrl'));
+  controllers.controller('PostDetailCtrl', require('controllers/post/PostDetailCtrl'));
   controllers.controller('FindpwdCtrl', require('controllers/user/FindpwdCtrl'));
   controllers.controller('LoginCtrl', require('controllers/user/LoginCtrl'));
   controllers.controller('RegisterCtrl', require('controllers/user/RegisterCtrl'));

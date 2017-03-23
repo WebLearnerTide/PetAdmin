@@ -1,0 +1,41 @@
+<ion-view title="帖子全文">
+  <ion-nav-buttons side="left">
+    <a class="button button-clear"
+       nav-clear ng-click="goBack()">
+      <i class="icon ion-arrow-left-c"></i>
+    </a>
+  </ion-nav-buttons>
+  <ion-content class="stable-bg">
+    <ion-refresher pulling-text="下拉刷新" on-refresh="prePage()"></ion-refresher>
+    <ion-list>
+      <div class="item stable-bg padding" style="border: hidden;margin: 0"
+           collection-repeat="item in postDetails" collection-item-height="item.height" ng-style="{height:(item.height + 15) + 'px'}">
+        <ion-item class="item-avatar" style="border: hidden;background-color:#fff;">
+          <img src="http://www.runoob.com/try/demo_source/nin_logo.jpeg">
+          <h2>{{item.mName}}</h2>
+          <p style="float: right;text-align: right">{{item.rowName}}</p>
+          <p>{{item.pTime}}</p>
+        </ion-item>
+        <ion-item class="item-divider light-bg"  style="border: hidden;background-color:#fff;" ng-show="item.pTitle!=null&&item.pTitle!=undefined&&item.pTitle!=''"><h2><i class="energized">[{{item.pcName}}]</i> {{item.pTitle}}</h2></ion-item>
+        <ion-item class="item-body" style="border: hidden;background-color:#fff;">
+          <ion-item class="stable-bg" ng-show="item.fId!=null&&item.fId!=undefined&&item.fId!=''" style="padding-top: 0;"><p>回复：{{item.fName}}<br>{{item.fContent}}</p></ion-item>
+
+          <ion-item style="padding:0;border: hidden"><p>{{item.pContent}}</p></ion-item>
+        </ion-item>
+        <ion-item class="item-divider light-bg" style="border: hidden;padding-top: 0;background-color:#fff;">
+          <p style="float: right;">
+            <button class="button-small button-clear" ng-click="showReply(item)"><i class="icon ion-chatbubble-working dark"></i></button>
+          </p>
+        </ion-item>
+      </div>
+    </ion-list>
+    <ion-infinite-scroll on-infinite="nextPage()" ng-if="param.tryMore" immediate-check="false"  icon="ion-load-c" distance="10%" ></ion-infinite-scroll>
+
+  </ion-content>
+  <ion-footer-bar>
+    <div class="button-bar bar-clear">
+      <button class="button-clear" ng-click="showReply()"><i class="icon ion-ios-chatbubble-outline dark"></i></button>
+      <button class="button-clear" ng-click="doCollect()"><i class="dark" ng-class="{'icon ion-ios-heart':isCollect, 'icon ion-ios-heart-outline':!isCollect}"></i></button>
+    </div>
+  </ion-footer-bar>
+</ion-view>
