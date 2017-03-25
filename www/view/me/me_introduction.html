@@ -1,0 +1,26 @@
+<!--关于宠物助手的介绍，二维码下载-->
+
+<ion-view title="关于宠物助手">
+  <ion-nav-buttons side="middle">
+    <a class="button button-clear"
+       nav-clear ng-href="#/setting">
+      <i class="icon ion-arrow-left-c"></i>
+    </a>
+  </ion-nav-buttons>
+  <ion-content>
+    <div style="height: 20%;text-align: center;margin-bottom: 20px">
+      <img ng-src="{{chat.face}}" style="width: 40%;padding: 20px"><br>
+      <p>V1.0.0</p>
+    </div>
+
+    <div class="list">
+      <a class="item" ng-href="#/text">
+        宠物助手介绍
+      </a>
+
+      <a class="item" href="#">
+        二维码下载
+      </a>
+    </div>
+  </ion-content>
+</ion-view>
