@@ -222,6 +222,48 @@ define([], function () {
           })
         }
       },
+      getBarPost:function (params, success) {
+        $http({
+          method:'GET',
+          params:params,
+          url:baseUrl + '/post/getBarPosts',
+        }).then(function (resp) {
+          var data = resp.data;
+          if (data.success) {
+            if (data.empty) {
+              data.tryMore = false;
+            } else {
+              if (data.page<data.totalPage) {
+                data.tryMore = true;
+                data.page += 1;
+              } else {
+                data.tryMore = false;
+              }
+            }
+            success(data)
+          } else {
+            ServiceUtil.showLongBottom(data.msg)
+          }
+        }, function (e) {
+          ServiceUtil.showLongBottom(e.message)
+        })
+      },
+      getTopPost:function (barId, success) {
+        $http({
+          method:'GET',
+          params:{barId:barId},
+          url:baseUrl + '/post/getBarTop',
+        }).then(function (resp) {
+          var data = resp.data;
+          if (data.success) {
+            success(data)
+          } else {
+            ServiceUtil.showLongBottom(data.msg)
+          }
+        }, function (e) {
+          ServiceUtil.showLongBottom(e.message)
+        })
+      },
       param:param
     }
   }
