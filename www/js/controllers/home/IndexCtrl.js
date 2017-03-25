@@ -3,20 +3,20 @@
  */
 define([], function () {
   'use strict';
-  var ctrl = function ($state, $scope, ServiceUtil, $http) {
-    var ls = ServiceUtil.getLocalStorage();
-    var firstLogin = ls.get('firstLogin', true);
-    if (firstLogin==true || firstLogin=='true') {
-      $state.go('tour')
-    } else {
-      $state.go('tab.home')
-    }
-    $http.get('http://ctide.cn/petServer/cos?type=multi').then(function (data) {
-      console.log('data', data);
-    }, function (err) {
+  var ctrl = function ($state, $scope, ServiceUtil, $timeout) {
 
+    $scope.$on('$ionicView.beforeEnter', function () {
+      $scope.ls = ServiceUtil.getLocalStorage();
+      $scope.firstLogin = $scope.ls.get('firstLogin', true);
     })
+    $timeout(function () {
+      if ($scope.firstLogin) {
+        $state.go('tour')
+      } else {
+        $state.go('tab.home')
+      }
+    }, 3000)
   }
-  ctrl.$inject = ['$state', '$scope', 'ServiceUtil', '$http']
+  ctrl.$inject = ['$state', '$scope', 'ServiceUtil', '$timeout']
   return ctrl;
 })

@@ -1,6 +1,6 @@
 define(['services/services', 'controllers/controllers', 'directives/directives'], function () {
   var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','starter.directives', 'TimePicker', 'ngCordova']);
-  app.run(function($ionicPlatform, $rootScope, $ionicHistory) {
+  app.run(function($ionicPlatform, $rootScope, $ionicHistory, $location, $cordovaToast, $cordovaKeyboard,$timeout) {
     $rootScope.goBack = function () {
       $ionicHistory.goBack();
     }
@@ -15,6 +15,44 @@ define(['services/services', 'controllers/controllers', 'directives/directives']
         StatusBar.styleDefault();
       }
     });
+
+    $ionicPlatform.registerBackButtonAction(function(e) {
+      //判断处于哪个页面时双击退出
+
+      var array = ['/tab/home', '/tab/dog', '/tab/post/hot', '/tab/post/concern', '/tab/me']
+
+      if (array.indexOf($location.path()) != -1) {
+        if ($rootScope.backButtonPressedOnceToExit) {
+          ionic.Platform.exitApp();
+          // navigator.app.exitApp();
+        } else {
+          $rootScope.backButtonPressedOnceToExit = true;
+          $cordovaToast.showShortBottom('再按一次退出应用');
+          // navigator.app.exitApp();
+          ionic.Platform.exitApp();
+
+          $timeout(function() {
+            $rootScope.backButtonPressedOnceToExit = false;
+          }, 2000);
+        }
+      } else if ($ionicHistory.backView()) {
+        if ($cordovaKeyboard.isVisible()) {
+          $cordovaKeyboard.close();
+        } else {
+          $ionicHistory.goBack();
+        }
+      } else {
+        $rootScope.backButtonPressedOnceToExit = true;
+        $cordovaToast.showShortBottom('再按一次退出应用');
+        // navigator.app.exitApp();
+        ionic.Platform.exitApp();
+        $timeout(function() {
+          $rootScope.backButtonPressedOnceToExit = false;
+        },2000);
+      }
+      e.preventDefault();
+      return false;
+    }, 101);
   });
   //统一Android和iOS的风格。Android下Tab放到页面下
   app.config(function($ionicConfigProvider) {

@@ -3,10 +3,10 @@
  */
 define([], function () {
   'use strict';
-  var factory = function ($window, $cordovaToast, $cordovaDatePicker, $cordovaImagePicker, $ionicLoading) {
+  var factory = function ($window, $cordovaToast, $cordovaDatePicker, $cordovaImagePicker, $ionicLoading, $cordovaCamera, $cordovaFileTransfer) {
     var server = {
       protocol:'http',
-      host:'ctide.cn',
+      host:'pet.ngrok.zyee.me',
       content:'petServer',
       port:80
     }
@@ -62,8 +62,59 @@ define([], function () {
       }
     }
 
-    var chooseImg = {
+    var camera = {
+      getImg:function (type, success, error) {
+        document.addEventListener('deviceready', function () {
+          var source;
+          if (0==type) {
+            source = Camera.PictureSourceType.CAMERA
+          } else {
+            source = Camera.PictureSourceType.PHOTOLIBRARY
+          }
+          var options = {
+            quality: 50,
+            destinationType: Camera.DestinationType.FILE_URL,
+            sourceType: source,
+            allowEdit: true,
+            encodingType: Camera.EncodingType.PNG,
+            targetWidth: 100,
+            targetHeight: 100,
+            popoverOptions: CameraPopoverOptions,
+            saveToPhotoAlbum: false,
+            correctOrientation:true
+          };
+          console.log('options', options)
+          $cordovaCamera.getPicture(options).then(success, error)
+        } , false);
+      }
+    }
 
+    var imgTransfer = {
+      upload:function (type, file, success, error) {
+        document.addEventListener('deviceready', function () {
+          var tmp = 'masterImg';
+          var param = {
+
+          }
+          if (type==0) {
+            var user = localStorage.getObject('LoginUser');
+            param.mId = user.mId
+            param.mName = user.mName
+          } else {
+
+          }
+          var url = encodeURI(server.protocol + '://' + server.host + ':'+ server.port + '/' + server.content + '/upload/' + tmp);
+          var options = {
+            fileKey : "file",
+            fileName : 'tmp',
+            mimeType : 'image/jpeg',
+            params : param
+          }
+
+          $cordovaFileTransfer.upload(url, file, options).then(success, error)
+
+        } , false);
+      }
     }
 
     return {
@@ -93,36 +144,6 @@ define([], function () {
         for (var k in o)
           if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
         return fmt;
-      },
-      getDatePicker: function (success, error, options) {
-        var defaultOptions = {
-          date: new Date(),
-          mode: 'date', // or 'time'
-          minDate: new Date(1900,0,1),
-          allowOldDates: true,
-          allowFutureDates: false,
-          doneButtonLabel: '确定',
-          doneButtonColor: '#F2F3F4',
-          cancelButtonLabel: '取消',
-          cancelButtonColor: '#000000'
-        }
-
-        var err = {
-          msg:'攻城狮正在努力开发中',
-          duration:'1000'
-        }
-
-        options = arguments[2] ? arguments[2]: defaultOptions;
-        if (typeof cordova === 'undefined') {
-          error(err)
-        } else {
-          document.addEventListener("deviceready", function () {
-            $cordovaDatePicker.show(options).then(function (date) {
-              // $cordovaToast.showLongBottom(date)
-              success(date)
-            })
-          },false);
-        }
       },
       showImagePicker:function (success, error, options) {
         var defaultOptions = {
@@ -172,9 +193,11 @@ define([], function () {
             $cordovaToast.showShortBottom(text)
           },false);
         }
-      }
+      },
+      petCamera:camera,
+      imgTransfer:imgTransfer
     }
   }
-  factory.$inject = ['$window', '$cordovaToast', '$cordovaDatePicker', '$cordovaImagePicker', '$ionicLoading'];
+  factory.$inject = ['$window', '$cordovaToast', '$cordovaDatePicker', '$cordovaImagePicker', '$ionicLoading', '$cordovaCamera', '$cordovaFileTransfer'];
   return factory;
 })
