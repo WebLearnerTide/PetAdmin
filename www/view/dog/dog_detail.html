@@ -5,12 +5,11 @@
       <i class="icon ion-plus"></i>
     </a>
   </ion-nav-buttons>
-
-  <div>
-    <img src="https://cdn.zhyee.cn/ionic_require/require.png" style="height: 100%;width: 100%">
-  </div>
-  <div class="padding"></div>
+  <ion-content>
   <div class="list">
+    <div class="item item-image">
+      <img ng-src="{{pet.petPhoto}}">
+    </div>
     <a href="#" class="item item-icon-left">
       <i class="icon ion-home"></i>
       {{pet.petName}}的记事本
@@ -37,6 +36,6 @@
     </a>
 
   </div>
-
+  </ion-content>
   <!--</ion-nav-view>-->
 </ion-view>

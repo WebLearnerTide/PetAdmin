@@ -23,13 +23,13 @@
         </div>
       </div>
       <ion-list>
-        <ion-item ng-repeat="top in topPost">
+        <ion-item ng-repeat="top in topPost" ng-click="detail(top)">
           <i class="energized">[{{top.pcName}}]</i> {{top.pTitle}}
         </ion-item>
       </ion-list>
       <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
       <div class="list stable-bg" style="border: hidden;padding: 5px;">
-        <div class="item  stable-bg"  style="border: hidden;" collection-repeat="p in barPost" collection-item-height="p.height" ng-style="{'height':p.height + 'px'}">
+        <div class="item  stable-bg"  style="border: hidden;" ng-click="detail(p)" collection-repeat="p in barPost" collection-item-height="p.height" ng-style="{'height':p.height + 'px'}">
           <div class="item item-avatar">
             <img ng-src="{{p.mImg}}">
             <h2>{{p.pTitle}}</h2>
