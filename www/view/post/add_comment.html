@@ -1,0 +1,21 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-positive">
+    <div class="buttons">
+      <a class="button button-clear" ng-click="closeReply()"><i class="icon ion-arrow-left-c"></i></a>
+    </div>
+    <h1 class="title">回复主题</h1>
+    <div class="buttons">
+      <a class="button button-clear" ng-click="doReply()" ng-disabled="!reply.rContent">发送</a>
+    </div>
+  </ion-header-bar>
+  <ion-content class="padding-top">
+    <ion-list>
+      <ion-item class="item-input" style="border: hidden">
+        <textarea placeholder="回复{{reply.mName}}" ng-model="reply.rContent" expanding-text-area></textarea>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <ion-footer-bar ng-hide="true">
+    <i class="icon ion-arrow-left-c"></i><i class="icon ion-arrow-left-c"></i><i class="icon ion-arrow-left-c"></i>
+  </ion-footer-bar>
+</ion-modal-view>

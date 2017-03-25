@@ -1,11 +1,25 @@
 <ion-view title="我的收藏">
-  <ion-content>
-
-  </ion-content>
   <ion-nav-buttons side="middle">
     <a class="button button-clear"
-       nav-clear ng-href="#/tab/me">
+       nav-clear ng-click="goBack()">
       <i class="icon ion-arrow-left-c"></i>
     </a>
   </ion-nav-buttons>
+  <ion-content class="stable-bg">
+    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+    <ion-list>
+      <div class="item stable-bg" style="border: none;padding: 5px"
+           collection-repeat="item in posts"
+           ng-click="detail(item)">
+        <ion-item class="item-body">
+          <i class="energized">[{{item.pcName}}]</i> {{item.pTitle}}
+        </ion-item>
+        <ion-item class="item-divider light-bg">
+          <span style="font-size: 12px">{{item.barName}} <i style="float: right;" class="dark">{{item.pTime}}</i></span>
+        </ion-item>
+      </div>
+    </ion-list>
+    <ion-infinite-scroll on-infinite="loadMore()" ng-if="param.tryMore" immediate-check="false"  icon="ion-load-c" distance="10%" ></ion-infinite-scroll>
+
+  </ion-content>
 </ion-view>

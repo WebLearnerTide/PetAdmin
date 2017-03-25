@@ -1,0 +1,32 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-positive">
+    <div class="buttons">
+      <a class="button button-clear" ng-click="closeNewPost()"><i class="icon ion-arrow-left-c"></i></a>
+    </div>
+    <h1 class="title">发帖</h1>
+    <div class="buttons">
+      <a class="button button-clear" ng-click="doAddPost()" ng-disabled="!(post.pContent&&post.pTitle&&post.postClass.pcId!=-1)">发送</a>
+    </div>
+  </ion-header-bar>
+  <ion-content class="padding-top">
+    <ion-list>
+      <ion-item class="item-select">
+        分类
+        <select ng-model="post.postClass" ng-change="callSelect()" ng-options="pc.pcName for pc in postClasses">
+        </select>
+      </ion-item>
+      <ion-item class="item-divider"></ion-item>
+      <ion-item class="item-input">
+        <input placeholder="请输入发布帖子标题" type="text" ng-model="post.pTitle">
+      </ion-item>
+      <ion-item class="item-input" style="border-bottom: hidden">
+        <textarea placeholder="请输入内容" ng-model="post.pContent" expanding-text-area></textarea>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <ion-footer-bar>
+    <div class="button-bar bar-clear">
+      <button class="button-clear" ng-click="chooseImg()"><i class="dark icon ion-ios-camera"></i></button>
+    </div>
+  </ion-footer-bar>
+</ion-modal-view>

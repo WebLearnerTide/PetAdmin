@@ -1,0 +1,31 @@
+<ion-view title="回复提醒" cache-view="false">
+  <ion-nav-buttons side="left">
+    <a class="button button-clear"
+       nav-clear ng-click="goBack()">
+      <i class="icon ion-arrow-left-c"></i>
+    </a>
+  </ion-nav-buttons>
+  <ion-content class="stable-bg">
+    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+    <ion-list>
+      <div class="item stable-bg" style="border: none;padding: 5px"
+           collection-repeat="item in posts"
+           ng-click="detail(item)">
+        <ion-item class="item-avatar">
+          <img src="http://www.runoob.com/try/demo_source/nin_logo.jpeg">
+          <h2>{{item.mName}}</h2>
+          <p>{{item.rTime}}</p>
+        </ion-item>
+        <ion-item class="item-body" style="padding-top:5px;">
+          <p style="margin-top: 10px">评论 <i class="energized">[{{item.pcName}}]</i> {{item.pTitle}}</p>
+          <p class="stable-bg padding">{{item.rContent}}</p>
+        </ion-item>
+        <ion-item class="item-divider light-bg">
+          <span style="font-size: 12px;float: right">{{item.barName}}</span>
+        </ion-item>
+      </div>
+    </ion-list>
+    <ion-infinite-scroll on-infinite="loadMore()" ng-if="param.tryMore" immediate-check="false"  icon="ion-load-c" distance="10%" ></ion-infinite-scroll>
+
+  </ion-content>
+</ion-view>

@@ -4,54 +4,38 @@
       <i class="icon ion-arrow-right-c"></i></a>
   </ion-nav-buttons>
 
-  <ion-content>
-    <div>
-      <!--logo区域-->
-      <div style="height: auto;width: 100%;padding: 10px;">
-        <div style="text-align: center">
-          <img align="center" ng-src="{{chat.face}}" style="border-radius: 50%;width: 25%">
-        </div>
-      </div>
-
-      <!--登录表单-->
-      <div class="content" style="height: 50%">
-        <div class="list list-inset">
-          <label class="item item-input">
-            <i class="icon ion-person placeholder-icon"></i>
-            <input type="text" placeholder="用户名" ng-model="master.mName" id="usernameinput">
-
-          </label>
-          <label class="item item-input">
-            <i class="icon ion-lock-combination placeholder-icon"></i>
-            <input type="password" placeholder="密码" ng-model="master.mPwd">
-          </label>
-        </div>
+  <ion-content overflow-scroll="false">
 
 
-        <div class="padding" style="padding-bottom: 0px">
-          <button class="button button-block button-positive" ng-click="doLogin()"
-          >登录</button>
-        </div>
+    <ion-list>
+      <ion-item class="item-image" style="padding: 20px;border: none">
+        <img align="center" ng-src="{{chat.face}}" style="border-radius: 50%;width: 25%">
+      </ion-item>
+    </ion-list>
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-person placeholder-icon"></i>
+        <input type="text" placeholder="用户名" ng-model="master.mName" id="usernameinput">
 
-        <div class="padding" style="padding-top: 0">
-          <button class="button button-calm" ng-click="doRegister()">注册</button>
-          <button class="button button-calm" style="float: right" ng-click="doFind()">忘记密码</button>
-        </div>
-      </div>
-
-
-      <!--空白部分-->
-      <div style="height: 20%;background-color: transparent"></div>
-      <!--第三方图标-->
-      <div class="padding row" style="margin-top: 10px;height: 10%">
-
-         <button class="button icon ion-gear-a col clear" style="padding: 0 30px"></button>
-         <button class="button icon ion-gear-a col clear" style="padding: 0 30px"></button>
-         <button class="button icon ion-gear-a col clear" style="padding: 0 30px"></button>
-         <button class="button icon ion-gear-a col clear" style="padding: 0 30px"></button>
-      </div>
+      </label>
+      <label class="item item-input">
+        <i class="icon ion-lock-combination placeholder-icon"></i>
+        <input type="password" placeholder="密码" ng-model="master.mPwd">
+      </label>
+      <button class="button button-block button-positive" style="margin-top: 20px" ng-click="doLogin()"
+      >登录</button>
+      <div class="padding"></div>
+      <a ng-click="doRegister()">注册</a>
+      <a style="float: right" ng-click="doFind()">忘记密码</a>
     </div>
+
+
   </ion-content>
+  <ion-footer-bar class="row bar-clear">
+    <i class="iconfont icon-qq col clear positive light-bg" ng-click="doQQLogin()"></i>
+    <i class="iconfont icon-weibo col clear assertive light-bg" ng-click="doWeiBoLogin()"></i>
+    <i class="iconfont icon-weixin col clear balanced light-bg" ng-click="doWeChatLogin()"></i>
+  </ion-footer-bar>
 </ion-view>
 
 

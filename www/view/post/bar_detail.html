@@ -1,0 +1,52 @@
+<ion-view title="{{bar.barName}}">
+  <ion-nav-buttons side="left">
+    <a class="button button-clear"
+       nav-clear ng-click="goBack()">
+      <i class="icon ion-arrow-left-c"></i>
+    </a>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <a class="button button-clear"
+       nav-clear ng-click="openNewPost()">
+      <i class="icon ion-compose"></i>
+    </a>
+  </ion-nav-buttons>
+  <ion-content class="padding-bottom padding-top stable-bg">
+    <div class="stable-bg">
+
+      <div class="list">
+        <div class="item item-avatar item-button-right">
+          <img src="http://www.runoob.com/try/demo_source/nin_logo.jpeg">
+          <h2>{{bar.barName}}</h2>
+          <p style="display: flex; align-items: center; position: relative;" class="padding-top padding-right">帖子数 {{barPost.total}}</p>
+          <button class="button button-clear" style="position:absolute;top: 25%;"><i class="assertive" ng-class="{'icon ion-ios-heart':true, 'icon ion-ios-heart-outline':!true}"></i></button>
+        </div>
+      </div>
+      <ion-list>
+        <ion-item ng-repeat="top in topPost">
+          <i class="energized">[{{top.pcName}}]</i> {{top.pTitle}}
+        </ion-item>
+      </ion-list>
+      <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+      <div class="list stable-bg" style="border: hidden;padding: 5px;">
+        <div class="item  stable-bg"  style="border: hidden;" collection-repeat="p in barPost" collection-item-height="p.height" ng-style="{'height':p.height + 'px'}">
+          <div class="item item-avatar">
+            <img ng-src="{{p.mImg}}">
+            <h2>{{p.pTitle}}</h2>
+            <p>{{p.mName}} {{p.pTime}}</p>
+          </div>
+
+          <div class="item item-body">
+            <p style="font-size: 14px">{{p.pContent}}</p>
+          </div>
+          <ion-item class="item-divider light-bg" style="padding-top: 0;background-color:#fff;">
+            <p style="float: right;">
+              <button class="button-small button-clear" ng-click="showReply(item)"><i class="icon ion-chatbubble-working dark"></i></button>
+            </p>
+          </ion-item>
+        </div>
+      </div>
+      <ion-infinite-scroll on-infinite="loadMore()" ng-if="param.tryMore" immediate-check="false"  icon="ion-load-c" distance="10%" ></ion-infinite-scroll>
+    </div>
+  </ion-content>
+</ion-view>

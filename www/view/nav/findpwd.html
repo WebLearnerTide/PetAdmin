@@ -10,11 +10,12 @@
     <div class="padding"></div>
 
     <label class="item item-input">
-      <input type="text" placeholder="手机号/邮箱">
-      <timerbutton timeout="60000" show-timer="false">获取验证码</timerbutton>
+      <input type="text" placeholder="手机号/邮箱" ng-model="email">
+      <timerbutton timeout="60000" show-timer="false" email="email"
+                   error-handle="errorHandle(error)" success-handle="successHandle(data)">获取验证码</timerbutton>
     </label>
     <label class="item item-input">
-      <input type="text" placeholder="输入验证码">
+      <input type="text" placeholder="输入验证码" ng-model="passwords.vCode">
 
     </label>
     <div class="padding">

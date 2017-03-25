@@ -1,8 +1,8 @@
 <!--添加关注界面-->
-<ion-view title="更多">
+<ion-view title="更多" ng-init="loadUnFollow()" cache-view="false">
   <ion-nav-buttons side="left">
     <a class="button button-clear"
-       nav-clear ng-href="#/tab/post/concern">
+       nav-clear ng-click="goBackPost()">
       <i class="icon ion-arrow-left-c"></i>
     </a>
   </ion-nav-buttons>
@@ -17,56 +17,34 @@
     <div class="content ionic-pseudo">
       <div class="list">
 
-        <div class="item item-divider">
+        <div class="item item-divider" ng-show="showPetType">
           您家的品种
         </div>
 
-        <a class="item" href="#">
-          拉布拉多吧
+        <a class="item" ng-repeat="pet in petType">
+          {{pet.barName}}
           <button class="button button-small icon ion-plus icon-assertive"
-                  style="float:right;">添加关注</button>
+                  style="float:right;" ng-click="addConcern(pet.barId)" ng-show="pet.showBtn"> 添加关注</button>
         </a>
 
-        <a class="item" href="#">
-          金毛吧
-          <button class="button button-small icon ion-plus icon-assertive"
-                  style="float:right;">添加关注</button>
-        </a>
-
-        <a class="item" href="#">
-          二哈吧
-          <button class="button button-small icon ion-plus icon-assertive"
-                  style="float:right;">添加关注</button>
-        </a>
-
-        <a class="item" href="#">
-          柴犬吧
-          <button class="button button-small icon ion-plus icon-assertive"
-                  style="float:right;">添加关注</button>
-        </a>
-
-        <div class="item item-divider">
+        <div class="item item-divider" ng-show="showLifeHealth">
           生活健康
         </div>
 
-        <a class="item" href="#">
-          疾病预防
+        <a class="item"  ng-repeat="life in lifeHealth" ng-show="showLifeHealth">
+          {{life.barName}}
           <button class="button button-small icon ion-plus icon-assertive"
-                  style="float:right;">添加关注</button>
+                  style="float:right;" ng-click="addConcern(life.barId)" ng-show="life.showBtn">添加关注</button>
         </a>
 
-        <a class="item" href="#">
-          锻炼
+        <div class="item item-divider" ng-show="showOtherFollow">
+          生活健康
+        </div>
+        <a class="item" ng-repeat="other in otherFollow" ng-show="showOtherFollow">
+          {{other.barName}}
           <button class="button button-small icon ion-plus icon-assertive"
-                  style="float:right;">添加关注</button>
+                  style="float:right;" ng-click="addConcern(other.barId)" ng-show="other.showBtn">添加关注</button>
         </a>
-
-        <a class="item" href="#">
-          增加技能
-          <button class="button button-small icon ion-plus icon-assertive"
-                  style="float:right;">添加关注</button>
-        </a>
-
       </div>
 
     </div>
