@@ -85,6 +85,7 @@ define([], function () {
               // alert("expires_time is "+ new Date(parseInt(args.expires_time)) + " TimeStamp is " +args.expires_time);
             }, function (failReason) {
               $cordovaToast.showShortBottom(failReason)
+              error()
             });
           }, function () {
             $cordovaToast.showShortBottom('您似乎没有安装手机QQ')
@@ -118,6 +119,7 @@ define([], function () {
               })
             },function(failReason){
               $cordovaToast.showShortBottom(failReason)
+              error()
             });
           },function(){
             $cordovaToast.showShortBottom('您似乎没有安装微博客户端')

@@ -18,6 +18,8 @@ define([], function () {
 
       $scope.curPost = {}
 
+      $ionicLoading.show();
+
       $scope.loadDetail = function (param) {
         $timeout(function () {
           if (!($scope.param.tryMore == 'true' || $scope.param.tryMore)) {
@@ -47,8 +49,13 @@ define([], function () {
             $scope.$broadcast('scroll.infiniteScrollComplete');
           }
           $scope.$broadcast('scroll.refreshComplete');
+          $scope.$broadcast('load.loadFinish');
         }, 1500)
       }
+
+      $scope.$on('load.loadFinish', function () {
+        $ionicLoading.hide();
+      })
 
       PostService.isCollect($stateParams.pId, function () {
         $scope.isCollect = true;

@@ -113,6 +113,38 @@ define([], function () {
           })
         }
       },
+      getCollectPost:function (params, success, error) {
+        var user = ls.getObject('LoginUser');
+        if (verifier.isObjectEmpty(user)) {
+          ServiceUtil.showLongBottom('您好像还没登录哦')
+          params.tryMore = false;
+          error()
+        } else {
+          params.mId = user.mId
+          $http({
+            method:'POST',
+            url:baseUrl + '/post/getCollect',
+            data:params
+          }).then(function (resp) {
+            var data = resp.data;
+            if (data.success) {
+              if (data.empty) {
+                data.tryMore = false;
+              } else {
+                if (data.page<data.total) {
+                  data.tryMore = true;
+                  data.page+=1;
+                } else {
+                  data.tryMore = false;
+                }
+              }
+              success(data)
+            }
+          }, function (err) {
+            ServiceUtil.showLongBottom(err.message)
+          })
+        }
+      },
       getPostDetail:function (params, success) {
         $http({
           method:'POST',

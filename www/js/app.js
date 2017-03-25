@@ -141,8 +141,8 @@ define(['services/services', 'controllers/controllers', 'directives/directives']
       //我的收藏界面
       .state('collect',{
         url: '/collect',
-        templateUrl: 'view/me/me_collect.html'
-        // controller: 'MeCollectCtrl'
+        templateUrl: 'view/me/me_collect.html',
+        controller: 'MeCollectCtrl'
 
       })
       // 针对每一个宠物的页面
@@ -216,13 +216,18 @@ define(['services/services', 'controllers/controllers', 'directives/directives']
       })
       .state('myPost', {
         url:'/myPost',
-        templateUrl:'view/post/my_post.html',
+        templateUrl:'view/me/my_post.html',
         controller:'MyPostCtrl'
       })
       .state('postDetail', {
         url:'/postDetail/:pId',
         templateUrl:'view/post/post_detail.html',
         controller:'PostDetailCtrl'
+      })
+      .state('meReply', {
+        url:'/meReply',
+        templateUrl:'view/me/me_reply.html',
+        controller:'MeReplyCtrl'
       })
     // 默认进入欢迎页
     $urlRouterProvider.otherwise('/index');

@@ -3,12 +3,21 @@
  */
 define([], function () {
   'use strict';
-  var ctrl = function ($scope, $stateParams,$ionicLoading, Chats, ServiceUtil, MeService) {
+  var ctrl = function ($scope, $stateParams,$ionicLoading, Chats, ServiceUtil, MeService, $state) {
     $scope.$on('$ionicView.beforeEnter', function() {
       $scope.btn = {
         name:'签到',
         ctrl:false
       }
+
+      $scope.replyCount = {}
+
+      MeService.getReplyCount(function (data) {
+        $scope.replyCount = data
+      }, function () {
+        $state.go('login')
+      })
+
       var ls = ServiceUtil.getLocalStorage();
       var verifier = ServiceUtil.getVerifier();
       $scope.chat = Chats.get(0);
@@ -18,7 +27,7 @@ define([], function () {
       MeService.updateInfo($scope.me, function (resp) {
         $scope.me  = resp;
         if (verifier.isObjectEmpty($scope.me.mDate)) {
-          $scope.me.mDate = new Date(1900,1,1);
+          $scope.me.mDate = ServiceUtil.dateFormat(new Date(1900,1,1), 'yyyy-MM-dd');
         }
         if (verifier.isEmpty($scope.me.mScore)) {
           $scope.me.mScore = 0;
@@ -66,6 +75,6 @@ define([], function () {
       }
     }
   }
-  ctrl.$inject = ['$scope', '$stateParams','$ionicLoading', 'Chats', 'ServiceUtil', 'MeService'];
+  ctrl.$inject = ['$scope', '$stateParams','$ionicLoading', 'Chats', 'ServiceUtil', 'MeService', '$state'];
   return ctrl;
 })

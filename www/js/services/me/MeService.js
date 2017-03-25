@@ -54,6 +54,82 @@ define([], function () {
           })
         }
         defer.promise.then(success, error)
+      },
+      getReplyCount:function (success, error) {
+        var user = ls.getObject('LoginUser');
+        if (verifier.isObjectEmpty(user)) {
+          ServiceUtil.showLongBottom('您好像还没登录哦')
+          error()
+        } else {
+          $http({
+            url:baseUrl + '/reply/getReplyCount',
+            data:{mId:user.mId},
+            method:'POST'
+          }).then(function (resp) {
+            var data = resp.data;
+            if (0==data.count) {
+              data.empty = true;
+            } else {
+              data.empty = false;
+            }
+            success(data);
+          }, function (err) {
+            var data = {
+              empty:true,
+              count:0
+            }
+            success(data);
+          })
+        }
+      },
+      getReply:function (params, success, error) {
+        var user = ls.getObject('LoginUser');
+        if (verifier.isObjectEmpty(user)) {
+          ServiceUtil.showLongBottom('您好像还没登录哦')
+          params.tryMore = false;
+          error()
+        } else {
+          params.mId = user.mId
+          $http({
+            url:baseUrl + '/reply/getReply',
+            data:params,
+            method:'POST'
+          }).then(function (resp) {
+            var data = resp.data;
+            if (data.success) {
+              if (data.empty) {
+                data.tryMore = false;
+              } else {
+                if (data.page<data.total) {
+                  data.tryMore = true;
+                  data.page+=1;
+                } else {
+                  data.tryMore = false;
+                }
+              }
+              success(data)
+            }
+          }, function (err) {
+            ServiceUtil.showLongBottom(err.message)
+          })
+        }
+      },
+      readReply:function (error) {
+        var user = ls.getObject('LoginUser');
+        if (verifier.isObjectEmpty(user)) {
+          ServiceUtil.showLongBottom('您好像还没登录哦')
+          error()
+        } else {
+          $http({
+            url:baseUrl + '/reply/readReply',
+            data:{mId:user.mId},
+            method:'POST'
+          }).then(function (resp) {
+            // 已读
+          }, function (err) {
+            // 已读
+          })
+        }
       }
     }
   }

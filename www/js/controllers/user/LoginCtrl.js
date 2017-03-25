@@ -53,14 +53,16 @@ define([], function () {
           $state.go('tab.home')
         }, function (e) {
           $ionicLoading.hide()
-          //缓存存储
-          var login_cache = $cacheFactory.get('login_cache')
-          if (null==login_cache ||undefined==login_cache) {
-            login_cache = $cacheFactory('login_cache');
+          if (arguments[0]) {
+            //缓存存储
+            var login_cache = $cacheFactory.get('login_cache')
+            if (null == login_cache || undefined == login_cache) {
+              login_cache = $cacheFactory('login_cache');
+            }
+            e.type = 'qq';
+            login_cache.put('thirdPart', e);
+            $state.go('register', {reg: 1});
           }
-          e.type = 'qq';
-          login_cache.put('thirdPart', e);
-          $state.go('register', {reg: 1});
         });
       }
     }
@@ -78,14 +80,16 @@ define([], function () {
           $state.go('tab.home')
         }, function (e) {
           $ionicLoading.hide()
-          //缓存存储
-          var login_cache = $cacheFactory.get('login_cache')
-          if (null==login_cache ||undefined==login_cache) {
-            login_cache = $cacheFactory('login_cache');
+          if (arguments[0]) {
+            //缓存存储
+            var login_cache = $cacheFactory.get('login_cache')
+            if (null == login_cache || undefined == login_cache) {
+              login_cache = $cacheFactory('login_cache');
+            }
+            e.type = 'weibo';
+            login_cache.put('thirdPart', e);
+            $state.go('register', {reg: 1});
           }
-          e.type = 'weibo';
-          login_cache.put('thirdPart', e);
-          $state.go('register', {reg: 1});
         });
       }
     }

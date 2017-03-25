@@ -2,7 +2,7 @@
  * Created by Anker on 2017/3/20.
  */
 define([], function () {
-  var ctrl = function ($scope,$state, $ionicHistory, $stateParams, BarService, $ionicModal, PostService) {
+  var ctrl = function ($scope,$state, $ionicHistory, $stateParams, BarService, $ionicModal, PostService, $cordovaImagePicker, ServiceUtil) {
 
     $scope.$on('$ionicView.beforeEnter', function () {
       $scope.postClasses = [{pcId:-1,pcName:'请选择'}];
@@ -52,7 +52,28 @@ define([], function () {
     $scope.goBack = function () {
       $ionicHistory.goBack()
     }
+
+    $scope.chooseImg = function () {
+      var options = {
+        maximumImagesCount: 10,
+        width: 800,
+        height: 800,
+        quality: 80
+      };
+      if (typeof cordova === 'undefined') {
+        ServiceUtil.showLongBottom('攻城狮正在开发中')
+      } else {
+        document.addEventListener("deviceready", function () {
+          $cordovaImagePicker.getPictures(options).then(function (results) {
+            // $cordovaToast.showLongBottom(date)
+            ServiceUtil.showLongBottom(JSON.stringify(results))
+          }, function (e) {
+            ServiceUtil.showLongBottom(JSON.stringify(e))
+          })
+        },false);
+      }
+    }
   }
-  ctrl.$inject = ['$scope','$state', '$ionicHistory', '$stateParams', 'BarService', '$ionicModal', 'PostService'];
+  ctrl.$inject = ['$scope','$state', '$ionicHistory', '$stateParams', 'BarService', '$ionicModal', 'PostService', '$cordovaImagePicker', 'ServiceUtil'];
   return ctrl;
 })

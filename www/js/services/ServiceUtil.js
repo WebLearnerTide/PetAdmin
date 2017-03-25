@@ -62,6 +62,10 @@ define([], function () {
       }
     }
 
+    var chooseImg = {
+
+    }
+
     return {
       getServer:function () {
         return server;

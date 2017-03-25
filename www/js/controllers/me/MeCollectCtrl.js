@@ -1,30 +1,30 @@
 /**
- * Created by Anker on 2017/3/11.
+ * Created by Anker on 2017/3/24.
  */
 define([], function () {
-  'use strict';
-  var ctrl = function ($scope, $ionicLoading, PostService, $timeout,ServiceUtil, $state) {
+  var ctrl = function ($scope, $state, PostService, $ionicLoading, $timeout, ServiceUtil) {
     $scope.$on('$ionicView.beforeEnter', function () {
-      $scope.hots = []
+      $scope.posts = []
       $scope.param = {
         page:1,
         tryMore:true
       }
+
       $scope.doRefresh = function () {
-        $scope.param.page=1;
-        PostService.getHotPost($scope.param, function (data) {
+        $scope.param.page = 1;
+        PostService.getCollectPost($scope.param, function (data) {
           $ionicLoading.hide()
-          if (data.empty) {
-            $scope.hots = [];
-            $scope.hots.push({pTitle:'暂无热门', hide:false})
-            $scope.param.tryMore = false
-          } else {
-            $scope.hots = data.hotPostList
-            $scope.param.tryMore = data.tryMore
-          }
+          $scope.posts = data.collectPosts;
+          $scope.param.tryMore = data.tryMore
+          console.log('data', data)
           $scope.$broadcast('scroll.refreshComplete');
+        }, function () {
+          $scope.$broadcast('scroll.refreshComplete');
+          // $state.go('login')
         })
       }
+
+
       $ionicLoading.show()
       $scope.doRefresh()
     })
@@ -32,36 +32,43 @@ define([], function () {
     $scope.loadMore = function () {
       //这里使用定时器是为了缓存一下加载过程，防止加载过快
       // console.log('进入loadMore', $scope.param)
-      $ionicLoading.show()
+
       $timeout(function () {
         if (!($scope.param.tryMore == 'true' || $scope.param.tryMore)) {
           $ionicLoading.hide();
-          ServiceUtil.showShortBottom('没有更多帖子了')
           $scope.$broadcast('scroll.infiniteScrollComplete');
         } else {
-          PostService.getHotPost($scope.param, function (data) {
+          PostService.getCollectPost($scope.param, function (data) {
             $ionicLoading.hide();
-            var myPostList = data.hotPostList;
+            var myPostList = data.collectPosts;
             $scope.param.tryMore = data.tryMore
             for (var i in myPostList) {
-              $scope.hots.push(myPostList[i])
+              $scope.posts.push(myPostList[i])
             }
-            // $scope.hots.concat(myPostList);
 
             if ($scope.param.tryMore) {
               $scope.param.page = $scope.param.page + 1;
+            } else {
+              ServiceUtil.showShortBottom('没有更多帖子了')
             }
             $scope.$broadcast('scroll.infiniteScrollComplete');
+          }, function () {
+            $ionicLoading.hide()
+            $state.go('login')
           })
         }
       }, 1500);
     };
 
+    //控制列表是否允许其加载更多
+    $scope.tryMoreCanBeLoaded = function () {
+      return $scope.param.tryMore;
+    }
+
     $scope.detail = function (post) {
       $state.go('postDetail', {pId:post.pId})
     }
-
   }
-  ctrl.$inject = ['$scope', '$ionicLoading', 'PostService', '$timeout','ServiceUtil', '$state'];
+  ctrl.$inject = ['$scope', '$state', 'PostService','$ionicLoading', '$timeout', 'ServiceUtil']
   return ctrl;
 })

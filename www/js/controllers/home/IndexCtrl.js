@@ -3,7 +3,7 @@
  */
 define([], function () {
   'use strict';
-  var ctrl = function ($state, $scope, ServiceUtil) {
+  var ctrl = function ($state, $scope, ServiceUtil, $http) {
     var ls = ServiceUtil.getLocalStorage();
     var firstLogin = ls.get('firstLogin', true);
     if (firstLogin==true || firstLogin=='true') {
@@ -11,7 +11,12 @@ define([], function () {
     } else {
       $state.go('tab.home')
     }
+    $http.get('http://ctide.cn/petServer/cos?type=multi').then(function (data) {
+      console.log('data', data);
+    }, function (err) {
+
+    })
   }
-  ctrl.$inject = ['$state', '$scope', 'ServiceUtil']
+  ctrl.$inject = ['$state', '$scope', 'ServiceUtil', '$http']
   return ctrl;
 })
