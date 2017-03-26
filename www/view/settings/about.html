@@ -1,5 +1,9 @@
-<!--老用户退出后重新进入应用显示的 界面-->
-<ion-view hide-nav-bar="true">
+<ion-modal-view>
+  <ion-header-bar class="bar-positive">
+    <div class="buttons">
+      <a class="button button-clear" ng-click="modal.hide()"><i class="icon ion-arrow-left-c"></i></a>
+    </div>
+  </ion-header-bar>
   <ion-content style="background-color: #fafafa">
     <div style="text-align: center;margin-top: 15%">
       <img ng-src="{{chat.face}}" style="width: 40%;padding: 20px 20px 0 20px"><br>
@@ -11,4 +15,4 @@
       </h5>
     </div>
   </ion-content>
-</ion-view>
+</ion-modal-view>

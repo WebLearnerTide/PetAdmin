@@ -90,7 +90,7 @@ define([], function () {
           // SelectPicture.chooseSinglePicture(index, 120, 120, $scope);
           if (index != 2) {
             ServiceUtil.petCamera.getImg(index, function (file) {
-              ServiceUtil.imgTransfer.upload(0, file, function (data) {
+              ServiceUtil.imgTransfer.uploadUser(file, function (data) {
                   var code = data.responseCode;
                   if (code == 200) {
                     $scope.updateMaster();

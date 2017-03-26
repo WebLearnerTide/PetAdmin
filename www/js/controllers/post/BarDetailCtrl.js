@@ -58,6 +58,8 @@ define([], function () {
       $scope.loadTop()
     })
 
+    $scope.photos = []
+
     PostService.getPostClasses(function (data) {
       for (var i in data) {
         $scope.postClasses.push(data[i]);
@@ -130,25 +132,21 @@ define([], function () {
       })
     };
 
-    $scope.chooseImg = function () {
-      var options = {
-        maximumImagesCount: 10,
-        width: 800,
-        height: 800,
-        quality: 80
-      };
-      if (typeof cordova === 'undefined') {
-        ServiceUtil.showLongBottom('攻城狮正在开发中')
+    $scope.chooseImg = function (type) {
+      if ($scope.photos.length<3) {
+        ServiceUtil.petCamera.getOptionsImg(type, function (data) {
+          $scope.photos.splice(0,0,data)
+        }, function (err) {
+          ServiceUtil.showLongBottom(err.message)
+        })
       } else {
-        document.addEventListener("deviceready", function () {
-          $cordovaImagePicker.getPictures(options).then(function (results) {
-            // $cordovaToast.showLongBottom(date)
-            ServiceUtil.showLongBottom(JSON.stringify(results))
-          }, function (e) {
-            ServiceUtil.showLongBottom(JSON.stringify(e))
-          })
-        },false);
+        ServiceUtil.showLongBottom('最多选择三张照片')
       }
+    }
+
+    $scope.removeImg = function (index) {
+      ServiceUtil.showShortBottom(index)
+      $scope.photos.splice(index, 1)
     }
 
   }

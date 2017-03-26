@@ -2,7 +2,7 @@
  * Created by Anker on 2017/3/26.
  */
 define([], function () {
-  var ctrl = function ($scope, $state, PetLogService, ServiceUtil, $stateParams, $ionicModal) {
+  var ctrl = function ($scope, $state, PetLogService, ServiceUtil, $stateParams, $ionicModal, $ionicLoading) {
 
     $ionicModal.fromTemplateUrl('view/dog/add_pet_log.html', {
       scope: $scope
@@ -17,7 +17,7 @@ define([], function () {
     $scope.logs = [];
 
     $scope.refreshLogs = function () {
-      PetLogService.getLogs($stateParams.petId, function (data) {
+      PetLogService.getLogs($stateParams.pId, function (data) {
         $scope.logs = data;
       })
     }
@@ -50,6 +50,6 @@ define([], function () {
       })
     }
   }
-  ctrl.$inject = ['$scope', '$state', 'PetLogService', 'ServiceUtil', '$stateParams', '$ionicModal'];
+  ctrl.$inject = ['$scope', '$state', 'PetLogService', 'ServiceUtil', '$stateParams', '$ionicModal', '$ionicLoading'];
   return ctrl
 })

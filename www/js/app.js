@@ -233,8 +233,8 @@ define(['services/services', 'controllers/controllers', 'directives/directives']
       })
       .state('meSetting',{
         url: '/meSetting',
-        templateUrl : 'view/me/me_setting.html'
-        // controller:'meSetting'
+        templateUrl : 'view/me/me_setting.html',
+        controller:'MeSettingCtrl'
       })
       .state('introduction',{
         url:'/introduction',

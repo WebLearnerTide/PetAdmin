@@ -10,7 +10,7 @@
     <div class="content ionic-pseudo">
       <div class="list">
         <!--清理缓存 夜间模式 推荐给好友未实现-->
-        <a class="item" ng-href="#">
+        <a class="item" ng-click="clearCache()">
           清理缓存
         </a>
         <ion-toggle toggle-class="toggle-positive"
@@ -22,11 +22,11 @@
           模式
         </ion-toggle>
         <div style="height: 20px;"></div>  <!--留白-->
-        <a class="item" ng-href="#/introduction">
+        <a class="item" ng-click="modal.show()">
           关于宠物助手
         </a>
         <!--通过QQ、QQ空间、微博分享-->
-        <a class="item" ng-href="#">
+        <a class="item" ng-click="share()">
           推荐给好友
         </a>
       </div>

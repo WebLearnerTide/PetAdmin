@@ -98,12 +98,12 @@ define([], function () {
           }
           var defaultOptions = {
             quality: options.quality ? options.quality : 50,
-            destinationType: options.destinationType?options.destinationType:Camera.DestinationType.FILE_URL,
+            destinationType: Camera.DestinationType.FILE_URL,
             sourceType: source,
             allowEdit: (options.allowEdit == null || options.allowEdit == undefined) ? true : options.allowEdit,
             encodingType: Camera.EncodingType.PNG,
-            targetWidth: options.targetWidth ? options.targetWidth : targetWidth,
-            targetHeight: options.targetHeight ? options.targetHeight : targetHeight,
+            targetWidth: options.targetWidth ? options.targetWidth : 800,
+            targetHeight: options.targetHeight ? options.targetHeight : 500,
             popoverOptions: CameraPopoverOptions,
             saveToPhotoAlbum: false,
             correctOrientation: true
@@ -114,28 +114,30 @@ define([], function () {
     }
 
     var imgTransfer = {
-      upload:function (type, file, success, error, param) {
+      uploadUser:function (file, success, error) {
         document.addEventListener('deviceready', function () {
-          param = arguments[4]?param:{}
-          if (type==0) {
-            var user = localStorage.getObject('LoginUser');
-            param.mId = user.mId
-            param.mName = user.mName
-            param.tmp = '/masterImg'
-            param.content = '/upload'
-          } else {
-            //好像不需要判断else了
+          var param = {}
+          var user = localStorage.getObject('LoginUser');
+          var url = encodeURI(server.protocol + '://' + server.host + ':'+ server.port + '/' + server.content + '/upload/masterImg');
+          var options = {
+            fileKey : "file",
+            fileName : 'tmp',
+            mimeType : 'image/jpeg',
+            params : user
           }
-          var url = encodeURI(server.protocol + '://' + server.host + ':'+ server.port + '/' + server.content + param.content + param.tmp);
+          $cordovaFileTransfer.upload(url, file, options).then(success, error)
+        } , false);
+      },
+      uploadPetLog:function (file, success, error, param) {
+        document.addEventListener('deviceready', function () {
+          var url = encodeURI(server.protocol + '://' + server.host + ':'+ server.port + '/' + server.content + '/petLog/add');
           var options = {
             fileKey : "file",
             fileName : 'tmp',
             mimeType : 'image/jpeg',
             params : param
           }
-
           $cordovaFileTransfer.upload(url, file, options).then(success, error)
-
         } , false);
       }
     }

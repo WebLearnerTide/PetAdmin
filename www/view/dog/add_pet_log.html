@@ -16,12 +16,10 @@
       <ion-item class="item-input" style="border-bottom: hidden">
         <textarea placeholder="请输入内容" ng-model="log.plogContent" expanding-text-area></textarea>
       </ion-item>
+      <ion-item ng-show="log.plogImgFile!=null&&log.plogImgFile!=undefined&&log.plogImgFile!=''">
+        <img ng-src="{{log.plogImgFile}}">
+      </ion-item>
     </ion-list>
-    <div class="row" ng-show="log.plogImgFile">
-      <img class="col col-33" style="height: 100%;" src="{{log.plogImgFile}}">
-      <any class="col col-33"></any>
-      <any class="col col-33"></any>
-    </div>
   </ion-content>
   <ion-footer-bar>
     <div class="button-bar bar-clear">

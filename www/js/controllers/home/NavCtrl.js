@@ -6,6 +6,12 @@ define([],function () {
 
   var ctrl = function ($scope, Chats) {
     $scope.nav = Chats.all();
+
+    // $scope.currentSlide = function (index) {
+    //
+    // }
+
+    $scope.current = 0;
   }
   ctrl.$inject= ['$scope', 'Chats'];
   return ctrl;

@@ -6,14 +6,20 @@ define([], function () {
   var ctrl = function ($state, $scope, ServiceUtil, $timeout,Chats) {
     $scope.chat = Chats.get(4);
     $scope.$on('$ionicView.beforeEnter', function () {
-      $scope.ls = ServiceUtil.getLocalStorage();
-      $scope.firstLogin = $scope.ls.get('firstLogin', true);
+      var ls = ServiceUtil.getLocalStorage();
+      $scope.user = ls.getObject('LoginUser');
+      $scope.firstLogin = ls.get('firstLogin', true);
     })
     $timeout(function () {
-      if ($scope.firstLogin) {
-        $state.go('tour')
+      if ($scope.firstLogin=='false' || !$scope.firstLogin) {
+        var verifier = ServiceUtil.getVerifier();
+        if (verifier.isObjectEmpty($scope.user)) {
+          $state.go('login')
+        } else {
+          $state.go('tab.home')
+        }
       } else {
-        $state.go('tab.home')
+        $state.go('tour')
       }
     }, 3000)
   }

@@ -22,9 +22,7 @@ define([], function () {
       addLog:function (log, success) {
         console.log('log', log)
         if (!verifier.isEmpty(log.plogImgFile)) {
-          log.content = '/petLog'
-          log.tmp = '/add'
-          imgUploader.upload(1, log.plogImgFile, function (data) {
+          imgUploader.uploadPetLog(log.plogImgFile, function (data) {
             var code = data.responseCode;
             ServiceUtil.showLongBottom('添加成功')
             if (code==200) {
