@@ -3,8 +3,8 @@
  */
 define([], function () {
   'use strict';
-  var ctrl = function ($state, $scope, ServiceUtil, $timeout) {
-
+  var ctrl = function ($state, $scope, ServiceUtil, $timeout,Chats) {
+    $scope.chat = Chats.get(4);
     $scope.$on('$ionicView.beforeEnter', function () {
       $scope.ls = ServiceUtil.getLocalStorage();
       $scope.firstLogin = $scope.ls.get('firstLogin', true);
@@ -17,6 +17,6 @@ define([], function () {
       }
     }, 3000)
   }
-  ctrl.$inject = ['$state', '$scope', 'ServiceUtil', '$timeout']
+  ctrl.$inject = ['$state', '$scope', 'ServiceUtil', '$timeout','Chats']
   return ctrl;
 })

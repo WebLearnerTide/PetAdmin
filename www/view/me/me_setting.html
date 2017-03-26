@@ -1,0 +1,42 @@
+<!--设置界面-->
+<ion-view title="个人设置">
+  <ion-nav-buttons side="middle">
+    <a class="button button-clear"
+       nav-clear ng-href="#/tab/me">
+      <i class="icon ion-arrow-left-c"></i>
+    </a>
+  </ion-nav-buttons>
+  <ion-content>
+    <div class="content ionic-pseudo">
+      <div class="list">
+        <!--清理缓存 夜间模式 推荐给好友未实现-->
+        <a class="item" ng-href="#">
+          清理缓存
+        </a>
+        <ion-toggle toggle-class="toggle-positive"
+                    ng-model="total.pattern"
+                    ng-true-value="'夜间'"
+                    ng-false-value="'日常'"
+                    ng-change="changePattern()">
+          {{total.pattern}}
+          模式
+        </ion-toggle>
+        <div style="height: 20px;"></div>  <!--留白-->
+        <a class="item" ng-href="#/introduction">
+          关于宠物助手
+        </a>
+        <!--通过QQ、QQ空间、微博分享-->
+        <a class="item" ng-href="#">
+          推荐给好友
+        </a>
+      </div>
+    </div>
+
+    <div class="padding" style="padding-bottom: 0px">
+      <!--退出登录返回到登录界面-->
+      <a class="button button-block button-assertive" ng-href="#/login">
+        退出登录</a>
+    </div>
+  </ion-content>
+</ion-view>
+

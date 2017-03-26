@@ -17,7 +17,7 @@ define([], function () {
       mName:'',
       mPwd:''
     }
-    $scope.chat = Chats.get(0)
+    $scope.chat = Chats.get(4)
     $scope.doLogin = function () {
       console.log('master', $scope.master);
       //调用LoginService的doLogin方法完成登录

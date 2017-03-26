@@ -8,12 +8,12 @@ define([], function() {
       id: 0,
       name: 'Ben Sparrow',
       lastText: 'You on your way?',
-      face: 'img/ben.png'
+      face: 'img/nav1.png'
     }, {
       id: 1,
       name: 'Max Lynx',
       lastText: 'Hey, it\'s me',
-      face: 'img/max.png'
+      face: 'img/nav2.png'
     }, {
       id: 2,
       name: 'Adam Bradleyson',
@@ -23,12 +23,12 @@ define([], function() {
       id: 3,
       name: 'Perry Governor',
       lastText: 'Look at my mukluks!',
-      face: 'img/perry.png'
+      face: 'img/nav3.png'
     }, {
       id: 4,
-      name: 'Mike Harrington',
+      name: 'My logo',
       lastText: 'This is wicked good ice cream.',
-      face: 'img/mike.png'
+      face: 'img/logo.png'
     }];
 
     return {

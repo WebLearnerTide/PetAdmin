@@ -1,21 +1,24 @@
-<ion-view view-title="tour" id="tour-view">
+<ion-view id="tour-view" style="background-color: ghostwhite">
   <!--<ion-content>-->
     <ion-nav-buttons side="right">
-      <a class="button button-clear" ng-href="#/login" nav-clear>Start</a>
+      <a class="button button-clear" ng-href="#/login" nav-clear>开始</a>
     </ion-nav-buttons>
 
     <ion-slide-box show-pager="true">
       <ion-slide>
-        <span class="icon icon-slide ion-document-text"></span>
-        <h3>See You </h3>
+        <span class="icon icon-slide"></span>
+        <img align="center" ng-src="{{nav[0].face}}" style="width: 80%;margin-top: 20%;margin-bottom: 10%">
+        <h3 class="navfont">宠物狗知识集锦</h3>
       </ion-slide>
       <ion-slide>
-        <span class="icon icon-slide ion-document-text"></span>
-        <h3>See You </h3>
+        <span class="icon icon-slide"></span>
+        <img align="center" ng-src="{{nav[1].face}}" style="width: 80%;margin-top: 20%;margin-bottom: 10%">
+        <h3 class="navfont">关切爱犬日常需求</h3>
       </ion-slide>
       <ion-slide>
-        <span class="icon icon-slide ion-document-text"></span>
-        <h3>See You </h3>
+        <span class="icon icon-slide"></span>
+        <img align="center" ng-src="{{nav[3].face}}" style="width: 80%;margin-top: 20%;margin-bottom: 10%">
+        <h3 class="navfont">捡屎官专属论坛</h3>
       </ion-slide>
     </ion-slide-box>
   <!--</ion-content>-->

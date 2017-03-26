@@ -27,5 +27,7 @@ define(function (require) {
   controllers.controller('LoginCtrl', require('controllers/user/LoginCtrl'));
   controllers.controller('RegisterCtrl', require('controllers/user/RegisterCtrl'));
   controllers.controller('ResetCtrl', require('controllers/user/ResetCtrl'));
+  controllers.controller('NavCtrl',require('controllers/home/NavCtrl'));
+  controllers.controller('MeIntroCtrl',require('controllers/me/MeIntroCtrl'));
   return controllers;
 })

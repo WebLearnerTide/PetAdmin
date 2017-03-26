@@ -1,6 +1,6 @@
 define(['services/services', 'controllers/controllers', 'directives/directives'], function () {
   var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','starter.directives', 'TimePicker', 'ngCordova']);
-  app.run(function($ionicPlatform, $rootScope, $ionicHistory) {
+  app.run(function($ionicPlatform, $rootScope, $ionicHistory, $location, $cordovaToast, $cordovaKeyboard,$timeout) {
     $rootScope.goBack = function () {
       $ionicHistory.goBack();
     }
@@ -202,7 +202,8 @@ define(['services/services', 'controllers/controllers', 'directives/directives']
       //欢迎页
       .state('tour',{
         url: '/tour',
-        templateUrl : 'view/nav/navigation.html'
+        templateUrl : 'view/nav/navigation.html',
+        controller: 'NavCtrl'
       })
     //首页面
       .state('index', {
@@ -229,6 +230,16 @@ define(['services/services', 'controllers/controllers', 'directives/directives']
         url:'/meReply',
         templateUrl:'view/me/me_reply.html',
         controller:'MeReplyCtrl'
+      })
+      .state('meSetting',{
+        url: '/meSetting',
+        templateUrl : 'view/me/me_setting.html'
+        // controller:'meSetting'
+      })
+      .state('introduction',{
+        url:'/introduction',
+        templateUrl: 'view/me/me_introduction.html',
+        controller:'MeIntroCtrl'
       })
       .state('petLog', {
         url:'/petLog/:pId',
