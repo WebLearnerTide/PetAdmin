@@ -1,0 +1,32 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-positive">
+    <div class="buttons">
+      <a class="button button-clear" ng-click="closeLog()"><i class="icon ion-arrow-left-c"></i></a>
+    </div>
+    <h1 class="title">添加日志</h1>
+    <div class="buttons">
+      <a class="button button-clear" ng-click="addLog()" ng-disabled="!(log.pContent&&log.pTitle)">发送</a>
+    </div>
+  </ion-header-bar>
+  <ion-content class="padding-top">
+    <ion-list>
+      <ion-item class="item-input">
+        <input placeholder="请输入标题" type="text" ng-model="log.pTitle">
+      </ion-item>
+      <ion-item class="item-input" style="border-bottom: hidden">
+        <textarea placeholder="请输入内容" ng-model="log.pContent" expanding-text-area></textarea>
+      </ion-item>
+    </ion-list>
+    <div class="row" ng-show="log.plogImgFile">
+      <img class="col col-33" style="height: 100%;" src="{{log.plogImgFile}}">
+      <any class="col col-33"></any>
+      <any class="col col-33"></any>
+    </div>
+  </ion-content>
+  <ion-footer-bar>
+    <div class="button-bar bar-clear">
+      <button class="button-clear" ng-click="chooseImg(0)"><i class="dark icon ion-camera"></i></button>
+      <button class="button-clear" ng-click="chooseImg(1)"><i class="dark icon ion-images"></i></button>
+    </div>
+  </ion-footer-bar>
+</ion-modal-view>

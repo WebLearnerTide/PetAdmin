@@ -10,6 +10,7 @@ define(function(require){
   services.factory('AdddogService', require('services/pet/AdddogService'))
   services.factory('DogDetailService', require('services/pet/DogDetailService'))
   services.factory('DogIndexService', require('services/pet/DogIndexService'))
+  services.factory('PetLogService', require('services/pet/PetLogService'))
   services.factory('Chats', require('services/post/ChatsService'))
   services.factory('LoginService', require('services/user/LoginService'))
   services.factory('RegisterService', require('services/user/RegisterService'))

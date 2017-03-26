@@ -6,6 +6,7 @@ define(function (require) {
   var directives = angular.module('starter.directives', []);
   directives.directive('petClassSelect', require('directives/select/petClass'));
   directives.directive('timerbutton', require('directives/button/timerbutton'));
+  directives.directive('timeLine', require('directives/list/timeline'));
   directives.directive('expandingTextArea', require('directives/textarea/expandingTextArea'));
   return directives;
 })

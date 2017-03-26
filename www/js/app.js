@@ -230,6 +230,11 @@ define(['services/services', 'controllers/controllers', 'directives/directives']
         templateUrl:'view/me/me_reply.html',
         controller:'MeReplyCtrl'
       })
+      .state('petLog', {
+        url:'/petLog/:pId',
+        templateUrl:'view/dog/dog_log.html',
+        controller:'PetLogCtrl'
+      })
     // 默认进入欢迎页
     $urlRouterProvider.otherwise('/index');
 

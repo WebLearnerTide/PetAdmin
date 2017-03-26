@@ -86,24 +86,47 @@ define([], function () {
           console.log('options', options)
           $cordovaCamera.getPicture(options).then(success, error)
         } , false);
+      },
+      getOptionsImg:function (type, success, error, options) {
+        document.addEventListener('deviceready', function () {
+          options = arguments[3]?options:{}
+          var source;
+          if (0 == type) {
+            source = Camera.PictureSourceType.CAMERA
+          } else {
+            source = Camera.PictureSourceType.PHOTOLIBRARY
+          }
+          var defaultOptions = {
+            quality: options.quality ? options.quality : 50,
+            destinationType: options.destinationType?options.destinationType:Camera.DestinationType.FILE_URL,
+            sourceType: source,
+            allowEdit: (options.allowEdit == null || options.allowEdit == undefined) ? true : options.allowEdit,
+            encodingType: Camera.EncodingType.PNG,
+            targetWidth: options.targetWidth ? options.targetWidth : targetWidth,
+            targetHeight: options.targetHeight ? options.targetHeight : targetHeight,
+            popoverOptions: CameraPopoverOptions,
+            saveToPhotoAlbum: false,
+            correctOrientation: true
+          };
+          $cordovaCamera.getPicture(options).then(success, error)
+        }, false);
       }
     }
 
     var imgTransfer = {
-      upload:function (type, file, success, error) {
+      upload:function (type, file, success, error, param) {
         document.addEventListener('deviceready', function () {
-          var tmp = 'masterImg';
-          var param = {
-
-          }
+          param = arguments[4]?param:{}
           if (type==0) {
             var user = localStorage.getObject('LoginUser');
             param.mId = user.mId
             param.mName = user.mName
+            param.tmp = '/masterImg'
+            param.content = '/upload'
           } else {
-
+            //好像不需要判断else了
           }
-          var url = encodeURI(server.protocol + '://' + server.host + ':'+ server.port + '/' + server.content + '/upload/' + tmp);
+          var url = encodeURI(server.protocol + '://' + server.host + ':'+ server.port + '/' + server.content + param.content + param.tmp);
           var options = {
             fileKey : "file",
             fileName : 'tmp',
