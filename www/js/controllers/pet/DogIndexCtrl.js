@@ -4,6 +4,9 @@
 define([], function () {
   'use strict';
   var ctrl = function ($scope, $state,$ionicPopup, $ionicLoading, DogIndexService) {
+
+    $ionicLoading.show();
+
     $scope.goToAdd = function () {
       $state.go('adddog')
     }
@@ -46,14 +49,16 @@ define([], function () {
           if (resp.petList.length != 0) {
             $scope.pets = resp.petList;
             $state.go('tab.dog.detail', {dogId:$scope.pets[0].petId});
+            $ionicLoading.hide();
           } else {
+            $ionicLoading.hide();
             $scope.showPopup();
-
           }
 
         }
       }, function (err) {
         // $scope.showConfirm();
+        $ionicLoading.hide();
         $scope.showPopup();
       })
     }

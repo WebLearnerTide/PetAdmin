@@ -108,7 +108,7 @@ define([], function () {
             saveToPhotoAlbum: false,
             correctOrientation: true
           };
-          $cordovaCamera.getPicture(options).then(success, error)
+          $cordovaCamera.getPicture(defaultOptions).then(success, error)
         }, false);
       }
     }

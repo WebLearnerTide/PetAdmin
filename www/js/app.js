@@ -1,6 +1,6 @@
 define(['services/services', 'controllers/controllers', 'directives/directives'], function () {
-  var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','starter.directives', 'TimePicker', 'ngCordova']);
-  app.run(function($ionicPlatform, $rootScope, $ionicHistory, $location, $cordovaToast, $cordovaKeyboard,$timeout) {
+  var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','starter.directives', 'ngCordova']);
+  app.run(function($ionicPlatform, $rootScope, $ionicHistory) {
     $rootScope.goBack = function () {
       $ionicHistory.goBack();
     }

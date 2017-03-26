@@ -14,6 +14,14 @@ define([], function () {
       $scope.modal.hide();
     };
 
+    $scope.logs = [];
+
+    $scope.refreshLogs = function () {
+      PetLogService.getLogs($stateParams.petId, function (data) {
+        $scope.logs = data;
+      })
+    }
+
     $scope.log = {
       plogTitle:'',
       plogContent:'',
@@ -28,7 +36,9 @@ define([], function () {
 
     $scope.addLog = function () {
       PetLogService.addLog($scope.log, function (data) {
-        ServiceUtil.showLongBottom(JSON.stringify(data))
+        ServiceUtil.showLongBottom('添加成功');
+        $scope.refreshLogs()
+        $scope.closeLog();
       })
     }
 

@@ -5,16 +5,16 @@
     </div>
     <h1 class="title">添加日志</h1>
     <div class="buttons">
-      <a class="button button-clear" ng-click="addLog()" ng-disabled="!(log.pContent&&log.pTitle)">发送</a>
+      <a class="button button-clear" ng-click="addLog()" ng-disabled="!(log.plogContent&&log.plogTitle)">发送</a>
     </div>
   </ion-header-bar>
   <ion-content class="padding-top">
     <ion-list>
       <ion-item class="item-input">
-        <input placeholder="请输入标题" type="text" ng-model="log.pTitle">
+        <input placeholder="请输入标题" type="text" ng-model="log.plogTitle">
       </ion-item>
       <ion-item class="item-input" style="border-bottom: hidden">
-        <textarea placeholder="请输入内容" ng-model="log.pContent" expanding-text-area></textarea>
+        <textarea placeholder="请输入内容" ng-model="log.plogContent" expanding-text-area></textarea>
       </ion-item>
     </ion-list>
     <div class="row" ng-show="log.plogImgFile">

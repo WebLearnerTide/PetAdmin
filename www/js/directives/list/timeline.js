@@ -2,13 +2,13 @@
  * Created by Anker on 2017/3/26.
  */
 define([], function () {
-  var directive = function (PetLogService) {
+  var directive = function () {
     return {
       restrict: 'EA',
       replace: true,
       transclude: true,
       scope: {
-        petId: '=petId'
+        lines: '=lines'
       },
       template:
       '<div id="cd-timeline" class="cd-container stable-bg">'+
@@ -25,12 +25,10 @@ define([], function () {
       link: function (scope, element, attrs) {
         // scope.lines = [];
         console.log('log', attrs)
-        PetLogService.getLogs(scope.petId, function (data) {
-          scope.lines = data;
-        })
+
       }
     }
   }
-  directive.$inject = ['PetLogService'];
+  directive.$inject = [];
   return directive
 })

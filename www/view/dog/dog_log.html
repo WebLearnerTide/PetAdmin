@@ -1,4 +1,4 @@
-<ion-view title="宠物记事本">
+<ion-view title="宠物记事本" ng-init="refreshLogs()">
   <ion-nav-buttons side="left">
     <a class="button button-clear"
        nav-clear ng-click="goBack()">
@@ -12,6 +12,6 @@
     </a>
   </ion-nav-buttons>
   <ion-content class="stable-bg">
-    <time-line pet-id="log.petId"></time-line>
+    <time-line lines="logs"></time-line>
   </ion-content>
 </ion-view>

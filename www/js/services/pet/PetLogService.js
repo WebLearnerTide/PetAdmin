@@ -20,6 +20,7 @@ define([], function () {
         });
       },
       addLog:function (log, success) {
+        console.log('log', log)
         if (!verifier.isEmpty(log.plogImgFile)) {
           log.content = '/petLog'
           log.tmp = '/add'
@@ -34,7 +35,7 @@ define([], function () {
           }, log)
         } else {
           $http({
-            url:baseUrl + '/postLog/add',
+            url:baseUrl + '/petLog/add',
             method:'POST',
             data:log
           }).then(function (resp) {
