@@ -28,10 +28,14 @@ define([], function () {
       $ionicLoading.show()
       $scope.doRefresh()
 
+    })
+
+    $scope.$on('$ionicView.afterLeave', function () {
       MeService.readReply(function () {
         $state.go('login')
       })
     })
+
 
     $scope.loadMore = function () {
       //这里使用定时器是为了缓存一下加载过程，防止加载过快
@@ -70,7 +74,7 @@ define([], function () {
     }
 
     $scope.detail = function (post) {
-      // $state.go('postDetail', {pId:post.pId})
+      $state.go('postDetail', {pId:post.pId})
     }
   }
   ctrl.$inject = ['$scope', '$state', 'MeService', 'ServiceUtil', '$ionicLoading', '$timeout']

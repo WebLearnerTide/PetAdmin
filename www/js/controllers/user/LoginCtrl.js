@@ -8,7 +8,7 @@ define([], function () {
       $timeout(function(){
         $ionicHistory.clearHistory();
         $ionicHistory.clearCache();
-      },1000);
+      },500);
     })
 
     // LoginService.clearLoginInfo()

@@ -6,7 +6,6 @@ define([], function () {
     var baseUrl = ServiceUtil.getBaseUrl();
     var ls = ServiceUtil.getLocalStorage();
     var verifier = ServiceUtil.getVerifier();
-    var user = ls.getObject("LoginUser");
     var err = {
       msg:'',
       duration:1000,
@@ -35,6 +34,7 @@ define([], function () {
         defer.promise.then(success, error)
       },
       doSign:function (success, error) {
+        var user = ls.getObject("LoginUser");
         var defer = $q.defer();
         if (verifier.isObjectEmpty(user)) {
           err.msg = '您还没有登录';

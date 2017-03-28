@@ -35,6 +35,8 @@ define([], function () {
                   height+=45;
                 if (item.fId!=null&&item.fId!=undefined&&item.fId!='')
                   height += 65;
+                if (!(item.imgList==null||item.imgList==undefined))
+                  height += 100 ;
                 item.height = height
                 $scope.postDetails.push(item)
               }

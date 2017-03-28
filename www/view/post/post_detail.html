@@ -11,7 +11,7 @@
       <div class="item stable-bg padding" style="border: hidden;margin: 0"
            collection-repeat="item in postDetails" collection-item-height="item.height" ng-style="{height:(item.height + 15) + 'px'}">
         <ion-item class="item-avatar" style="border: hidden;background-color:#fff;">
-          <img src="http://www.runoob.com/try/demo_source/nin_logo.jpeg">
+          <img ng-src="{{item.mImg}}">
           <h2>{{item.mName}}</h2>
           <p style="float: right;text-align: right">{{item.rowName}}</p>
           <p>{{item.pTime}}</p>
@@ -22,6 +22,11 @@
 
           <ion-item style="padding:0;border: hidden"><p>{{item.pContent}}</p></ion-item>
         </ion-item>
+        <div class="item-image row light-bg" ng-show="item.imgList!=null && item.imgList!=undefined" style="height: 100px;">
+          <div class="col" ng-repeat="img in item.imgList">
+            <img ng-src="{{img}}" style="height: 100px;">
+          </div>
+        </div>
         <ion-item class="item-divider light-bg" style="border: hidden;padding-top: 0;background-color:#fff;">
           <p style="float: right;">
             <button class="button-small button-clear" ng-click="showReply(item)"><i class="icon ion-chatbubble-working dark"></i></button>

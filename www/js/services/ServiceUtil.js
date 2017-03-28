@@ -57,8 +57,9 @@ define([], function () {
       getObject: function (key) {
         return JSON.parse($window.localStorage[key] || '{}');
       },
-      remove:function (key) {
-        $window.localStorage.removeItem(key)
+      removeItem:function (key) {
+        $window.localStorage[key] = ''
+        $window.localStorage.removeItem(key);
       }
     }
 
@@ -131,6 +132,54 @@ define([], function () {
       uploadPetLog:function (file, success, error, param) {
         document.addEventListener('deviceready', function () {
           var url = encodeURI(server.protocol + '://' + server.host + ':'+ server.port + '/' + server.content + '/petLog/add');
+          var options = {
+            fileKey : "file",
+            fileName : 'tmp',
+            mimeType : 'image/jpeg',
+            params : param
+          }
+          $cordovaFileTransfer.upload(url, file, options).then(success, error)
+        } , false);
+      },
+      uploadPostImg:function (file, success, error, param) {
+        document.addEventListener('deviceready', function () {
+          var url = encodeURI(server.protocol + '://' + server.host + ':'+ server.port + '/' + server.content + '/upload/postImg');
+          var options = {
+            fileKey : "file",
+            fileName : 'tmp',
+            mimeType : 'image/jpeg',
+            params : param
+          }
+          $cordovaFileTransfer.upload(url, file, options).then(success, error)
+        } , false);
+      },
+      uploadAdImg:function (file, success, error, param) {
+        document.addEventListener('deviceready', function () {
+          var url = encodeURI(server.protocol + '://' + server.host + ':'+ server.port + '/' + server.content + '/upload/addAd');
+          var options = {
+            fileKey : "file",
+            fileName : 'tmp',
+            mimeType : 'image/jpeg',
+            params : param
+          }
+          $cordovaFileTransfer.upload(url, file, options).then(success, error)
+        } , false);
+      },
+      uploadAlbumImg:function (file, success, error, param) {
+        document.addEventListener('deviceready', function () {
+          var url = encodeURI(server.protocol + '://' + server.host + ':'+ server.port + '/' + server.content + '/upload/addAlbum');
+          var options = {
+            fileKey : "file",
+            fileName : 'tmp',
+            mimeType : 'image/jpeg',
+            params : param
+          }
+          $cordovaFileTransfer.upload(url, file, options).then(success, error)
+        } , false);
+      },
+      uploadPetImg:function (file, success, error, param) {
+        document.addEventListener('deviceready', function () {
+          var url = encodeURI(server.protocol + '://' + server.host + ':'+ server.port + '/' + server.content + '/upload/petImg');
           var options = {
             fileKey : "file",
             fileName : 'tmp',

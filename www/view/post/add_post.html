@@ -22,7 +22,7 @@
       <ion-item class="item-input" style="border-bottom: hidden">
         <textarea placeholder="请输入内容" ng-model="post.pContent" expanding-text-area></textarea>
       </ion-item>
-      <ion-item class="row">
+      <ion-item class="row" style="height: 200px;border: hidden;">
         <div class="col col-33" style="height:100%" ng-repeat="photo in photos" ng-click="removeImg($index)">
           <img ng-src="{{photo}}">
         </div>

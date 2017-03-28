@@ -68,7 +68,7 @@ define([], function () {
     $scope.logout = function () {
       $scope.clearCache();
       var ls = ServiceUtil.getLocalStorage();
-      ls.remove('LoginUser')
+      ls.removeItem('LoginUser')
       $state.go('index')
     }
   }

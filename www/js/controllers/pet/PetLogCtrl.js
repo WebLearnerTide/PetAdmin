@@ -31,6 +31,12 @@ define([], function () {
 
     // Open the new post modal
     $scope.openLog = function() {
+      $scope.log = {
+        plogTitle:'',
+        plogContent:'',
+        plogImgFile:'',
+        petId:$stateParams.pId
+      }
       $scope.modal.show();
     };
 

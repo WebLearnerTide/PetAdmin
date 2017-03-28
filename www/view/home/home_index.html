@@ -1,16 +1,13 @@
 <ion-view hide-nav-bar="true">
-  <ion-slide-box show-pager="true" style="height: 30%" does-continue="true" auto-play="true">
-  <ion-slide>
-    <img src="https://cdn.zhyee.cn/ionic_require/require.png" style="height: 100%;width: 100%">
-  </ion-slide>
-  <ion-slide>
-    <img src="https://cdn.zhyee.cn/ionic_require/require.png" style="height: 100%;width: 100%">
-  </ion-slide>
-  <ion-slide>
-    <img src="https://cdn.zhyee.cn/ionic_require/require.png" style="height: 100%;width: 100%">
-    </ion-slide>
-  </ion-slide-box>
+  <ion-slide-box show-pager="true" style="height: 35%;" does-continue="true" auto-play="true">
+    <ion-slide ng-repeat="ad in ads" ng-click="detail(ad.pId)" style="width: 100%">
+    <div style="z-index: 9999;background-color: rgba(40,49,74,0.4);padding: 5px;position: absolute;width: 100%;">
+      <span class="stable">{{ad.title}}</span>
+    </div>
 
+    <img ng-src="{{ad.adImg}}" style="height: 100%;width: 100%">
+  </ion-slide>
+  </ion-slide-box>
   <div>
 
   </div>

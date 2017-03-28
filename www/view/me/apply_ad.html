@@ -1,0 +1,37 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-positive">
+    <div class="buttons">
+      <a class="button button-clear" ng-click="modal.hide()"><i class="icon ion-arrow-left-c"></i></a>
+    </div>
+    <h1 class="title">申请广告</h1>
+    <div class="buttons">
+      <a class="button button-clear" ng-click="doApplyAd()" ng-disabled="!(ad.score&&ad.score<=user.mScore&&ad.img)">完成</a>
+    </div>
+  </ion-header-bar>
+  <ion-content class="padding-top">
+    <ion-list>
+      <ion-item>
+        <i class="energized">[{{post.pcName}}]</i> {{post.pTitle}}
+      </ion-item>
+
+      <ion-item class="item-divider light-bg"></ion-item>
+      <ion-item class="item-input">
+        <label class="input-label">广告标题</label>
+        <input type="text" placeholder="(选填)" ng-model="ad.title">
+      </ion-item>
+      <ion-item class="item-input">
+        <label class="input-label">申请积分</label>
+        <input type="number" placeholder="最大输入{{user.mScore}}积分" ng-model="ad.score">
+      </ion-item>
+      <ion-item>
+        <img ng-src="{{img}}" style="width: 100%">
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  <ion-footer-bar>
+    <div class="button-bar bar-clear">
+      <button class="button-clear" ng-click="chooseImg(0)"><i class="dark icon ion-camera"></i></button>
+      <button class="button-clear" ng-click="chooseImg(1)"><i class="dark icon ion-images"></i></button>
+    </div>
+  </ion-footer-bar>
+</ion-modal-view>

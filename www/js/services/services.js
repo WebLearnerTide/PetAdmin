@@ -11,6 +11,7 @@ define(function(require){
   services.factory('DogDetailService', require('services/pet/DogDetailService'))
   services.factory('DogIndexService', require('services/pet/DogIndexService'))
   services.factory('PetLogService', require('services/pet/PetLogService'))
+  services.factory('AlbumService', require('services/pet/AlbumService'))
   services.factory('Chats', require('services/post/ChatsService'))
   services.factory('LoginService', require('services/user/LoginService'))
   services.factory('RegisterService', require('services/user/RegisterService'))
@@ -18,5 +19,7 @@ define(function(require){
   services.factory('BarService', require('services/post/BarService'))
   services.factory('PostService', require('services/post/PostService'))
   services.factory('ReplyService', require('services/post/ReplyService'))
+  services.factory('AdService', require('services/post/AdService'))
+  services.factory('DashService', require('services/home/DashService'))
   return services;
 })

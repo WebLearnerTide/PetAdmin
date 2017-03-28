@@ -20,6 +20,7 @@ define(function (require) {
   controllers.controller('DogDetailCtrl', require('controllers/pet/DogDetailCtrl'));
   controllers.controller('DogIndexCtrl', require('controllers/pet/DogIndexCtrl'));
   controllers.controller('PetLogCtrl', require('controllers/pet/PetLogCtrl'));
+  controllers.controller('AlbumCtrl', require('controllers/pet/AlbumCtrl'));
   controllers.controller('AddConcernCtrl', require('controllers/post/AddConcernCtrl'));
   controllers.controller('PostHotCtrl', require('controllers/post/PostHotCtrl'));
   controllers.controller('ConcernCtrl', require('controllers/post/ConcernCtrl'));

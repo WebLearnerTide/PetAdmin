@@ -4,6 +4,10 @@ define(['services/services', 'controllers/controllers', 'directives/directives']
     $rootScope.goBack = function () {
       $ionicHistory.goBack();
     }
+
+    $ionicHistory.clearCache();
+    $ionicHistory.clearHistory();
+
     $ionicPlatform.ready(function() {
       if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -147,15 +151,15 @@ define(['services/services', 'controllers/controllers', 'directives/directives']
 
       })
       // 针对每一个宠物的页面
-      .state('tab.dog.detail',{
-        url: '/detail/:dogId',
-        views:{
-          'tab-dog-detail':{
-            templateUrl: 'view/dog/dog_detail.html',
-            controller: 'DogDetailCtrl'
-          }
-        }
-      })
+      // .state('tab.dog.detail',{
+      //   url: '/detail/:dogId',
+      //   views:{
+      //     'tab-dog-detail':{
+      //       templateUrl: 'view/dog/dog_detail.html',
+      //       controller: 'DogDetailCtrl'
+      //     }
+      //   }
+      // })
       //每一个具体功能的页面
       .state('tab.dog.detail.function',{
         url:'/detail/function',
@@ -245,6 +249,11 @@ define(['services/services', 'controllers/controllers', 'directives/directives']
         url:'/petLog/:pId',
         templateUrl:'view/dog/dog_log.html',
         controller:'PetLogCtrl'
+      })
+      .state('album', {
+        url:'/album/:petId',
+        templateUrl:'view/dog/album.html',
+        controller:'AlbumCtrl'
       })
     // 默认进入欢迎页
     $urlRouterProvider.otherwise('/index');

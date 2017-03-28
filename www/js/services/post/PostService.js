@@ -73,6 +73,7 @@ define([], function () {
             var data = resp.data
             if (data.success) {
               ServiceUtil.showShortBottom('添加成功');
+              success(data);
             } else {
               ServiceUtil.showShortBottom(data.msg);
             }

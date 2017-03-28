@@ -3,9 +3,9 @@
  */
 define([], function () {
   'use strict';
-  var ctrl = function ($scope, $state,$ionicPopup, $ionicLoading, DogIndexService) {
+  var ctrl = function ($scope, $state,$ionicPopup, $ionicLoading, DogIndexService, DogDetailService, ServiceUtil, $ionicActionSheet) {
 
-    $ionicLoading.show();
+    // $ionicLoading.show();
 
     $scope.goToAdd = function () {
       $state.go('adddog')
@@ -42,13 +42,13 @@ define([], function () {
     $scope.pets = []
 
 
-    $scope.getDogsTabs = function () {
+    $scope.getDogsTabs = function (index) {
       console.log('调用加载tab')
       DogIndexService.getDogs(function (resp) {
         if (resp.success) {
           if (resp.petList.length != 0) {
             $scope.pets = resp.petList;
-            $state.go('tab.dog.detail', {dogId:$scope.pets[0].petId});
+            $scope.selectTab(index)
             $ionicLoading.hide();
           } else {
             $ionicLoading.hide();
@@ -62,7 +62,56 @@ define([], function () {
         $scope.showPopup();
       })
     }
+    $scope.pet = {}
+
+
+    $scope.selectTab = function (index) {
+      $scope.curTab = index
+      // 获取宠物
+      DogDetailService.getPet($scope.pets[index].petId, function (resp) {
+        if (resp.success) {
+          $scope.pet = resp.pet;
+        }
+      }, function (err) {
+
+      })
+    }
+
+    $scope.selectAvatar = function(petId, cur){
+      // 显示操作表
+      $ionicActionSheet.show({
+        buttons: [
+          { text: '<center><p style="font-size: 18px;">拍照<p></center>' },
+          { text: '<center><p style="font-size: 18px;text-align: center">从相册选择</p></div>' },
+          { text: '<center><p style="font-size: 18px;text-align: center" class="assertive">取消</p></center>' },
+        ],
+        buttonClicked: function(index) {
+          //设置头像
+          // SelectPicture.chooseSinglePicture(index, 120, 120, $scope);
+          if (index != 2) {
+            ServiceUtil.petCamera.getImg(index, function (file) {
+              var param = {
+                petId:petId
+              }
+              ServiceUtil.imgTransfer.uploadPetImg(file, function (data) {
+                var code = data.responseCode;
+                if (code == 200) {
+                  $scope.getDogsTabs(cur)
+                }
+
+              }, function (e) {
+                ServiceUtil.showLongBottom(e.message)
+              }, param)
+            }, function (err) {
+              ServiceUtil.showLongBottom(err)
+            })
+          }
+          return true;
+        }
+      });
+    }
+
   }
-  ctrl.$inject = ['$scope', '$state', '$ionicPopup', '$ionicLoading', 'DogIndexService'];
+  ctrl.$inject = ['$scope', '$state', '$ionicPopup', '$ionicLoading', 'DogIndexService', 'DogDetailService', 'ServiceUtil', '$ionicActionSheet'];
   return ctrl;
 })

@@ -58,13 +58,6 @@ define([], function () {
       $scope.loadTop()
     })
 
-    $scope.photos = []
-
-    PostService.getPostClasses(function (data) {
-      for (var i in data) {
-        $scope.postClasses.push(data[i]);
-      }
-    })
 
     $scope.loadMore = function () {
       //这里使用定时器是为了缓存一下加载过程，防止加载过快
@@ -118,6 +111,26 @@ define([], function () {
 
     // Open the new post modal
     $scope.openNewPost = function() {
+      if ($scope.bar.barType=='life_health') {
+        $scope.postClasses = [{pcId:4,pcName:'生活'}];
+        $scope.post = {
+          pContent:'',
+          pTitle:'',
+          postClass:$scope.postClasses[0]
+        }
+      } else {
+        $scope.postClasses = [{pcId: -1, pcName: '请选择'}];
+        PostService.getPostClasses(function (data) {
+          for (var i in data) {
+            $scope.postClasses.push(data[i]);
+          }
+          $scope.post = {
+            pContent:'',
+            pTitle:'',
+            postClass:$scope.postClasses[0]
+          }
+        })
+      }
       $scope.modal.show();
     };
 
@@ -125,8 +138,25 @@ define([], function () {
     $scope.doAddPost = function() {
       $scope.post.barId = $scope.bar.barId
       $scope.post.pcId = $scope.post.postClass.pcId
-      PostService.addPost($scope.post, function () {
+      PostService.addPost($scope.post, function (data) {
         //跳转到我的帖子
+        if ($scope.photos.length!=0) {
+          for (var i in $scope.photos) {
+            var file = $scope.photos[i];
+            var param = {
+              pId:data.pId
+            }
+            ServiceUtil.imgTransfer.uploadPostImg(file, function (resp) {
+              if (resp.responseCode==200) {
+                ServiceUtil.showShortBottom('图片' + i + '上传成功')
+              } else {
+                ServiceUtil.showShortBottom('图片' + i + '上传失败')
+              }
+            }, function (err) {
+              ServiceUtil.showShortBottom('图片' + i + '上传失败: ' + err.message)
+            }, param)
+          }
+        }
       }, function () {
         $state.go('login')
       })
