@@ -1,0 +1,14 @@
+<ion-view title="宠物百科">
+  <ion-nav-buttons side="left">
+    <a class="button button-clear" ng-click="goBack()" nav-clear>
+      <i class="icon ion-arrow-left-c"></i>
+    </a>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+    <ion-list>
+      <ion-item collection-repeat="item in news" ng-click="detail(item)"><h3>{{item.newsTitle}}</h3></ion-item>
+    </ion-list>
+    <ion-infinite-scroll ng-if="tryMore" on-infinite="loadMore()" immediate-check="false"  icon="ion-load-c" distance="10%" ></ion-infinite-scroll>
+  </ion-content>
+</ion-view>

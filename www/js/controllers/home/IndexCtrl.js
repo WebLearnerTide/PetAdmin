@@ -3,17 +3,13 @@
  */
 define([], function () {
   'use strict';
-  var ctrl = function ($state, $scope, ServiceUtil, $timeout,Chats, DashService) {
+  var ctrl = function ($state, $scope, ServiceUtil, $timeout, Chats, DashService) {
     $scope.chat = Chats.get(4);
     $scope.$on('$ionicView.beforeEnter', function () {
       $scope.ls = ServiceUtil.getLocalStorage();
       $scope.user = $scope.ls.getObject('LoginUser');
       $scope.firstLogin = $scope.ls.get('firstLogin', true);
     })
-
-    // DashService.getLatest(function (data) {
-    //   $scope.ls.setObject('ads', data)
-    // })
 
     $timeout(function () {
       if ($scope.firstLogin=='false' || !$scope.firstLogin) {
@@ -27,6 +23,8 @@ define([], function () {
         $state.go('tour')
       }
     }, 3000)
+
+
   }
   ctrl.$inject = ['$state', '$scope', 'ServiceUtil', '$timeout','Chats', 'DashService']
   return ctrl;

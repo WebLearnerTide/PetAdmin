@@ -1,0 +1,13 @@
+<ion-view title="宠物百科">
+  <ion-nav-buttons side="left">
+    <a class="button button-clear" ng-click="goBack()" nav-clear>
+      <i class="icon ion-arrow-left-c"></i>
+    </a>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-item><h2>{{news.newsTitle}}</h2></ion-item>
+    <ion-item class="item-body item-image" style="text-align: left;border-bottom: hidden">
+      <div ng-bind-html="news.newsContent"></div>
+    </ion-item>
+  </ion-content>
+</ion-view>

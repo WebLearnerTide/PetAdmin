@@ -1,5 +1,5 @@
 define(['services/services', 'controllers/controllers', 'directives/directives'], function () {
-  var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','starter.directives', 'ngCordova']);
+  var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services','starter.directives', 'ngCordova', 'ngSanitize']);
   app.run(function($ionicPlatform, $rootScope, $ionicHistory) {
     $rootScope.goBack = function () {
       $ionicHistory.goBack();
@@ -254,6 +254,21 @@ define(['services/services', 'controllers/controllers', 'directives/directives']
         url:'/album/:petId',
         templateUrl:'view/dog/album.html',
         controller:'AlbumCtrl'
+      })
+      .state('baikeDetail', {
+        url:'/baikeDetail/:newsId',
+        templateUrl:'view/dog/baike_detail.html',
+        controller:'BaikeDetailCtrl'
+      })
+      .state('newsDetail', {
+        url:'/newsDetail',
+        templateUrl:'view/home/news.html',
+        controller:'NewsCtrl'
+      })
+      .state('baike', {
+        url:'/baike/:petcId',
+        templateUrl:'view/dog/pet_baike.html',
+        controller:'BaikeCtrl'
       })
     // 默认进入欢迎页
     $urlRouterProvider.otherwise('/index');

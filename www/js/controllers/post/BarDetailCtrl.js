@@ -27,7 +27,7 @@ define([], function () {
         PostService.getBarPost($scope.param, function (data) {
           $ionicLoading.hide()
           // $scope.barPost = data.barPost;
-
+          $scope.barPost = []
           for (var i in data.barPost) {
             var item = data.barPost[i];
             var count = Math.ceil(screen.width / 14)
@@ -140,7 +140,7 @@ define([], function () {
       $scope.post.pcId = $scope.post.postClass.pcId
       PostService.addPost($scope.post, function (data) {
         //跳转到我的帖子
-        if ($scope.photos.length!=0) {
+        if ($scope.photos!=null&&$scope.photos!=undefined&&$scope.photos.length!=0) {
           for (var i in $scope.photos) {
             var file = $scope.photos[i];
             var param = {
@@ -157,6 +157,8 @@ define([], function () {
             }, param)
           }
         }
+        $scope.closeNewPost()
+        $scope.doRefresh()
       }, function () {
         $state.go('login')
       })

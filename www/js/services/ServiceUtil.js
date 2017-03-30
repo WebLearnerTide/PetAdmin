@@ -3,7 +3,14 @@
  */
 define([], function () {
   'use strict';
-  var factory = function ($window, $cordovaToast, $cordovaDatePicker, $cordovaImagePicker, $ionicLoading, $cordovaCamera, $cordovaFileTransfer) {
+  var factory = function ($window,
+                          $cordovaToast,
+                          $cordovaDatePicker,
+                          $cordovaImagePicker,
+                          $ionicLoading,
+                          $cordovaCamera,
+                          $cordovaFileTransfer,
+                          $http) {
     var server = {
       protocol:'http',
       host:'pet.ngrok.zyee.me',
@@ -191,6 +198,29 @@ define([], function () {
       }
     }
 
+    var newsApi = {
+      getNews:function (petcName, success, error) {
+        $http.jsonp('http://api.jisuapi.com/news/search?keyword=' + petcName + '&appkey=3125071ac032afc8&callback=JSON_CALLBACK').success(function (data) {
+          console.log('callback', data);
+          if (data.status==0) {
+            if (data.result.num<20) {
+              data.result.tryMore=false;
+            } else {
+              data.result.tryMore=true;
+            }
+
+            success(data.result)
+          } else {
+            var data = {
+              tryMore:false,
+              list:[]
+            }
+            success(data);
+          }
+        })
+      }
+    }
+
     return {
       getServer:function () {
         return server;
@@ -269,9 +299,29 @@ define([], function () {
         }
       },
       petCamera:camera,
-      imgTransfer:imgTransfer
+      imgTransfer:imgTransfer,
+      getNews:function (mId, success, error) {
+        $http({
+          url:this.getBaseUrl() + '/petClass/getByMaster',
+          method:'GET',
+          params:{mId:mId}
+        }).then(function (resp) {
+          var data = resp.data;
+          if (data.success) {
+            var list = data.petClass;
+            if (null!=list && undefined!=list) {
+              success(list)
+            } else {
+              success([])
+            }
+          }
+        }, function (err) {
+          error();
+        })
+      },
+      newsApi:newsApi
     }
   }
-  factory.$inject = ['$window', '$cordovaToast', '$cordovaDatePicker', '$cordovaImagePicker', '$ionicLoading', '$cordovaCamera', '$cordovaFileTransfer'];
+  factory.$inject = ['$window', '$cordovaToast', '$cordovaDatePicker', '$cordovaImagePicker', '$ionicLoading', '$cordovaCamera', '$cordovaFileTransfer', '$http'];
   return factory;
 })
